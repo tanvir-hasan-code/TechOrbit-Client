@@ -1,0 +1,49 @@
+.magic-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: #f97316; /* orange */
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.magic-btn:hover {
+  transform: scale(1.05);
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #facc15; /* yellow */
+  opacity: 0;
+}
+
+.explode .particle {
+  animation: explode 1s forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(var(--tx, 0) * 1px),
+      calc(var(--ty, 0) * 1px)
+    ) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Random directions for particles */
+.particle1 { --tx: 30; --ty: -50; }
+.particle2 { --tx: -40; --ty: -30; }
+.particle3 { --tx: 50; --ty: 20; }
+.particle4 { --tx: -20; --ty: 40; }
+.particle5 { --tx: 0; --ty: 50; }
