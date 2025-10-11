@@ -15,7 +15,7 @@ const Footer = () => {
             <p className="text-white leading-relaxed text-sm md:text-base max-w-sm">
               TechOrbit is your ultimate platform for modern tech solutions, providing innovative ideas, tools, and support for developers and businesses.
             </p>
-            <p className="text-orange-100 italic text-sm">“Empowering Tech, Empowering You.”</p>
+            <p className="text-orange-100 italic text-sm">“Empowering  Tech, Empowering You.”</p>
           </div>
 
           {/* Quick Links */}
