@@ -28,10 +28,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100">
+    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100">
       {/* Left Side: Form */}
-      <div className="md:w-1/2 flex flex-col justify-center items-center p-8">
-        <div className="w-full max-w-md bg-white p-12 rounded-3xl shadow-2xl border border-gray-200">
+      <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
+        <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600 text-center">
             Welcome Back
           </h2>
@@ -78,20 +78,20 @@ const LoginForm = () => {
                 />
               </div>
               {/* Forgot Password */}
-              <div className="text-right">
-                <button
-                  type="button"
-                  className="text-blue-600 text-sm hover:underline font-medium"
-                >
-                  Forgot Password?
-                </button>
-              </div>
             </div>
             {errors.password && (
               <span className="text-red-500 text-sm ml-2">
                 {errors.password.message}
               </span>
             )}
+            <div className="">
+              <button
+                type="button"
+                className="text-blue-600 text-sm hover:underline font-medium"
+              >
+                Forgot Password?
+              </button>
+            </div>
 
             {/* Submit Button */}
             <button
@@ -105,7 +105,10 @@ const LoginForm = () => {
             {/* Account signup prompt */}
             <p className="text-center text-gray-500 text-sm">
               Don't have an account?{" "}
-              <Link to="/register" className="text-blue-600 font-semibold cursor-pointer hover:underline">
+              <Link
+                to="/register"
+                className="text-blue-600 font-semibold cursor-pointer hover:underline"
+              >
                 Sign Up
               </Link>
             </p>

@@ -32,11 +32,11 @@ const Register = () => {
   const password = watch("password");
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gradient-to-r from-green-50 via-white to-green-100">
+    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-green-50 via-white to-green-100">
 
       {/* Left Side: Form */}
-      <div className="md:w-1/2 flex flex-col justify-center items-center p-8">
-        <div className="w-full max-w-md bg-white p-12 rounded-3xl shadow-2xl border border-gray-200">
+      <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
+        <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
           <h2 className="text-4xl font-extrabold mb-8 text-green-600 text-center">
             Create Account
           </h2>
