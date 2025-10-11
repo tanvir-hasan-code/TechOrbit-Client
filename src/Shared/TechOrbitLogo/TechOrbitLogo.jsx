@@ -4,7 +4,8 @@ import "./TechOrbitLogo.css"; // CSS file import
 import { Link } from "react-router";
 
 const TechOrbitLogo = ({ size = "h-10 w-10", className = "", textColor = "text-black" }) => {
-  const letters = "TechOrbit".split("");
+  const letters = "TechOrbit".split(""); 
+  // Shared Logo Adding
 
   return (
     <Link to="/">
