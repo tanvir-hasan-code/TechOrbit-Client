@@ -112,15 +112,14 @@ const LoginForm = () => {
                 Sign Up
               </Link>
             </p>
-
-            {/* Google Login Button */}
-            <div className="flex justify-center">
+          </form>
+           {/* Google Login Button */}
+            <div className="flex justify-center mt-3">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={handleGoogleFailure}
               />
             </div>
-          </form>
         </div>
       </div>
 

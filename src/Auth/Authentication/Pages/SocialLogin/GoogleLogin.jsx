@@ -1,58 +1,57 @@
 import React from "react";
-// import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import useAuth from "../../../../Hooks/useAuth";
 
 const GoogleLogin = () => {
-  // const { GoogleSignIn } = useAuth();
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const from = location?.state?.from || "/";
-  // const axiosInstance = useAxios();
+  const { GoogleSignIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from || "/";
 
-  // const handleGoogleSignIn = () => {
-  //   GoogleSignIn()
-  //     .then(async (result) => {
-  //       const user = result.user;
+  const handleGoogleSignIn = () => {
+    GoogleSignIn()
+      .then(async (result) => {
+        const user = result.user;
 
-  //       const userInfo = {
-  //         email: user.email,
-  //         role: "user",
-  //         created_at: new Date().toISOString(),
-  //         last_log_in: new Date().toISOString(),
-  //       };
+        const userInfo = {
+          email: user.email,
+          role: "user",
+          created_at: new Date().toISOString(),
+          last_log_in: new Date().toISOString(),
+        };
 
-  //       const userRes = await axiosInstance.post("/users", userInfo);
-  //       console.log(userRes);
+        console.log(userInfo)
 
-  //       if (result) {
-  //         Swal.fire({
-  //           position: "center",
-  //           icon: "success",
-  //           title: "Login Successfully!",
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //         });
-  //       }
-  //       navigate(from);
-  //     })
-  //     .catch((err) => {
-  //       if (err) {
-  //         Swal.fire({
-  //           position: "center",
-  //           icon: "success",
-  //           title: "Google Login Failed",
-  //           showConfirmButton: false,
-  //           timer: 1500,
-  //         });
-  //       }
-  //     });
-  // };
+
+        if (user) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Login Successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        navigate(from);
+      })
+      .catch((err) => {
+        if (err) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Google Login Failed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <div className="w-full ">
       <button
-        onClick={""}
+        onClick={handleGoogleSignIn}
         className="btn bg-base-300 w-full text-black border-[#e5e5e5]"
       >
         <svg

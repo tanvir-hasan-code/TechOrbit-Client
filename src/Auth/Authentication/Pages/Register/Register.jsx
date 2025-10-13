@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import Lottie from "lottie-react";
-import registerAnimation from "../../../../assets/Lottie/User-Register.json"; 
+import registerAnimation from "../../../../assets/Lottie/User-Register.json";
 import GoogleLogin from "../SocialLogin/GoogleLogin";
 import { Link } from "react-router";
 
@@ -33,7 +33,6 @@ const Register = () => {
 
   return (
     <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-green-50 via-white to-green-100">
-
       {/* Left Side: Form */}
       <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
         <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
@@ -41,12 +40,16 @@ const Register = () => {
             Create Account
           </h2>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
             {/* Name Field */}
-            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
+            <div
+              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
                             focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md">
+                            shadow-sm hover:shadow-md"
+            >
               <FaUser className="text-gray-400 text-xl" />
               <input
                 type="text"
@@ -55,12 +58,18 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.name && <span className="text-red-500 text-sm ml-2">{errors.name.message}</span>}
+            {errors.name && (
+              <span className="text-red-500 text-sm ml-2">
+                {errors.name.message}
+              </span>
+            )}
 
             {/* Email Field */}
-            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
+            <div
+              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
                             focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md">
+                            shadow-sm hover:shadow-md"
+            >
               <FaEnvelope className="text-gray-400 text-xl" />
               <input
                 type="email"
@@ -69,12 +78,18 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.email && <span className="text-red-500 text-sm ml-2">{errors.email.message}</span>}
+            {errors.email && (
+              <span className="text-red-500 text-sm ml-2">
+                {errors.email.message}
+              </span>
+            )}
 
             {/* Photo URL Field */}
-            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
+            <div
+              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
                             focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md">
+                            shadow-sm hover:shadow-md"
+            >
               <FaImage className="text-gray-400 text-xl" />
               <input
                 type="text"
@@ -85,9 +100,11 @@ const Register = () => {
             </div>
 
             {/* Password Field */}
-            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
+            <div
+              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
                             focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md">
+                            shadow-sm hover:shadow-md"
+            >
               <FaLock className="text-gray-400 text-xl" />
               <input
                 type="password"
@@ -96,26 +113,35 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.password && <span className="text-red-500 text-sm ml-2">{errors.password.message}</span>}
+            {errors.password && (
+              <span className="text-red-500 text-sm ml-2">
+                {errors.password.message}
+              </span>
+            )}
 
             {/* Confirm Password Field */}
             <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
+              <div
+                className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
                               focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                              shadow-sm hover:shadow-md">
+                              shadow-sm hover:shadow-md"
+              >
                 <FaLock className="text-gray-400 text-xl" />
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  {...register("confirmPassword", { 
+                  {...register("confirmPassword", {
                     required: "Confirm Password is required",
-                    validate: value => value === password || "Passwords do not match"
+                    validate: (value) =>
+                      value === password || "Passwords do not match",
                   })}
                   className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
                 />
               </div>
               {errors.confirmPassword && (
-                <span className="text-red-500 text-sm ml-2">{errors.confirmPassword.message}</span>
+                <span className="text-red-500 text-sm ml-2">
+                  {errors.confirmPassword.message}
+                </span>
               )}
             </div>
 
@@ -131,19 +157,21 @@ const Register = () => {
             {/* Already have account */}
             <p className="text-center text-gray-500 text-sm">
               Already have an account?{" "}
-              <Link to="/login" className="text-green-600 font-semibold cursor-pointer hover:underline">
+              <Link
+                to="/login"
+                className="text-green-600 font-semibold cursor-pointer hover:underline"
+              >
                 Login
               </Link>
             </p>
-
-            {/* Google Signup Button */}
-            <div className="flex justify-center mt-2">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleFailure}
-              />
-            </div>
           </form>
+          {/* Google Signup Button */}
+          <div className="flex justify-center mt-2">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleFailure}
+            />
+          </div>
         </div>
       </div>
 
