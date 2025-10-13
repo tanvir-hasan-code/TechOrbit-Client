@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Auth/Authentication/Key/firebase.init';
+import PrimaryLoaderPage from '../LoadingPages/PrimaryLoaderPage';
 
 
 const AuthProvider = ({ children }) => {
@@ -52,6 +53,10 @@ const AuthProvider = ({ children }) => {
 		updateUserProfile,
 		loading,
 
+	}
+
+	if (loading) {
+		return <PrimaryLoaderPage/>
 	}
 
 

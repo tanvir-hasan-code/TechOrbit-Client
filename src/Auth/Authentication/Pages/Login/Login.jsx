@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../../../../assets/Lottie/user-login.json"; // Lottie JSON file path
 import GoogleLogin from "../SocialLogin/GoogleLogin";
 import { Link, NavLink } from "react-router";
+import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo";
 
 const LoginForm = () => {
   const {
@@ -14,8 +15,7 @@ const LoginForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    alert(`Welcome, ${data.email}`);
+    console.log(data)
   };
 
   const handleGoogleSuccess = (credentialResponse) => {
@@ -29,6 +29,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100">
+      
       {/* Left Side: Form */}
       <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
         <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">

@@ -16,19 +16,8 @@ const Register = () => {
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
-    alert(`Welcome, ${data.name}`);
   };
 
-  const handleGoogleSuccess = (credentialResponse) => {
-    console.log("Google Credential:", credentialResponse);
-    alert("Google Signup Successful!");
-  };
-
-  const handleGoogleFailure = () => {
-    alert("Google Signup Failed. Try Again!");
-  };
-
-  // Watch password field for confirmation validation
   const password = watch("password");
 
   return (
@@ -167,10 +156,7 @@ const Register = () => {
           </form>
           {/* Google Signup Button */}
           <div className="flex justify-center mt-2">
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={handleGoogleFailure}
-            />
+            <GoogleLogin/>
           </div>
         </div>
       </div>
