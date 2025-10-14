@@ -45,7 +45,7 @@ const DashboardLayout = () => {
   const menuItems = [
     { path: "/", icon: <FaHome />, label: "Home" },
     { path: "/dashboard/profile", icon: <FaUser />, label: "My Profile" },
-    { path: "/dashboard/users", icon: <FaUsers />, label: "Manage Users" },
+    { path: "/dashboard/manage-users", icon: <FaUsers />, label: "Manage Users" },
     { path: "/dashboard/reports", icon: <FaClipboardList />, label: "Report Posts" },
     { path: "/dashboard/analytics", icon: <FaChartBar />, label: "Analytics" },
     { path: "/dashboard/settings", icon: <FaCog />, label: "Settings" },

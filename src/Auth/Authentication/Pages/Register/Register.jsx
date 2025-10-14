@@ -7,10 +7,11 @@ import GoogleLogin from "../SocialLogin/GoogleLogin";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, updateUserProfile, setLoading } = useAuth();
-
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const from = location?.state?.from || "/";
   const navigate = useNavigate();
@@ -36,7 +37,17 @@ const Register = () => {
         photoURL: photo,
       });
 
+      const profile = {
+        email: email,
+        name: name,
+        role: "user",
+        create_at: new Date().toISOString(),
+        last_signIn: new Date().toISOString(),
+      };
+
       if (res.user) {
+        await axiosSecure.post("/user", profile);
+
         Swal.fire({
           position: "center",
           icon: "success",
@@ -45,7 +56,7 @@ const Register = () => {
           timer: 1500,
         });
         setLoading(false);
-        navigate(from)
+        navigate(from);
       } else {
         Swal.fire({
           position: "center",

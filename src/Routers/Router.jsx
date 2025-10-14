@@ -6,6 +6,7 @@ import Register from "../Auth/Authentication/Pages/Register/Register";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import MyProfile from "../Dashboard/MyProfile/MyProfile";
 import PrivateRoute from "../Routes/PrivateRoute";
+import ManageUsers from "../Dashboard/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
 	{
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
 			{
 				path: "profile",
 				Component: MyProfile
+			},
+			{
+				path: "manage-users",
+				Component: ManageUsers
 			}
 		]
 	},
