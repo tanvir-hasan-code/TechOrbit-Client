@@ -4,9 +4,17 @@ import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import Lottie from "lottie-react";
 import registerAnimation from "../../../../assets/Lottie/User-Register.json";
 import GoogleLogin from "../SocialLogin/GoogleLogin";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAuth from "../../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser, updateUserProfile, setLoading } = useAuth();
+
+  const location = useLocation();
+  const from = location?.state?.from || "/";
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -14,8 +22,52 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data) => {
+    const name = data.name;
+    const photo = data.photo;
+    const email = data.email;
+    const password = data.password;
+
+    try {
+      const res = await createUser(email, password);
+
+      await updateUserProfile({
+        displayName: name,
+        photoURL: photo,
+      });
+
+      if (res.user) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Created Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setLoading(false);
+        navigate(from)
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "User Created Failed!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setLoading(false);
+      }
+    } catch (err) {
+      if (err) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: err.message || "User Created Failed!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setLoading(false);
+      }
+    }
   };
 
   const password = watch("password");
@@ -83,7 +135,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Photo URL"
-                {...register("photoURL")}
+                {...register("photo")}
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
@@ -156,7 +208,7 @@ const Register = () => {
           </form>
           {/* Google Signup Button */}
           <div className="flex justify-center mt-2">
-            <GoogleLogin/>
+            <GoogleLogin />
           </div>
         </div>
       </div>

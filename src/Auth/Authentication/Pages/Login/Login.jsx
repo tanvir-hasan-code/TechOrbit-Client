@@ -4,32 +4,64 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import Lottie from "lottie-react";
 import loginAnimation from "../../../../assets/Lottie/user-login.json"; // Lottie JSON file path
 import GoogleLogin from "../SocialLogin/GoogleLogin";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo";
+import useAuth from "../../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
+  const { signInUser, setLoading } = useAuth();
+  const location = useLocation();
+  const from = location?.state?.from || "/";
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data)
-  };
+  const onSubmit = async (data) => {
+    const email = data.email;
+    const password = data.password;
 
-  const handleGoogleSuccess = (credentialResponse) => {
-    console.log("Google Credential:", credentialResponse);
-    alert("Google Login Successful!");
-  };
+    try {
+      const res = await signInUser(email, password);
 
-  const handleGoogleFailure = () => {
-    alert("Google Login Failed. Try Again!");
+      if (res.user) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Created Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setLoading(false);
+        navigate(from)
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "User Created Failed!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setLoading(false);
+      }
+    } catch (err) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.message || "User Create Failed!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100">
-      
       {/* Left Side: Form */}
       <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
         <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
@@ -114,13 +146,10 @@ const LoginForm = () => {
               </Link>
             </p>
           </form>
-           {/* Google Login Button */}
-            <div className="flex justify-center mt-3">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleFailure}
-              />
-            </div>
+          {/* Google Login Button */}
+          <div className="flex justify-center mt-3">
+            <GoogleLogin />
+          </div>
         </div>
       </div>
 

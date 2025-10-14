@@ -1,7 +1,7 @@
 import React from 'react';
 import useAuth from '../Hooks/useAuth';
 import PrimaryLoaderPage from '../LoadingPages/PrimaryLoaderPage';
-import { NavLink, useLocation } from 'react-router';
+import {  Navigate, useLocation } from 'react-router';
 
 const PrivateRoute = ({children}) => {
 
@@ -13,7 +13,7 @@ const PrivateRoute = ({children}) => {
 	}
 
 	if (!user) {
-		return <NavLink to={'/login'} state={location.pathname}/>
+		return <Navigate to="/login" state={{ from: location }} replace />;
 	}
 
 

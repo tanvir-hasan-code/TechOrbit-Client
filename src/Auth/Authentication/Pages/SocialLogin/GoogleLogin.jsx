@@ -39,7 +39,7 @@ const GoogleLogin = () => {
         if (err) {
           Swal.fire({
             position: "center",
-            icon: "success",
+            icon: "error",
             title: "Google Login Failed",
             showConfirmButton: false,
             timer: 1500,
