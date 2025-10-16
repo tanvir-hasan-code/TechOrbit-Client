@@ -5,7 +5,6 @@ import ForbiddenPage from '../../ForbiddenPage/ForbiddenPage';
 const Home = () => {
 	return (
 		<div>
-			<ForbiddenPage/>
 			<h1 className=''>Hello From Home.</h1> 
 		</div>
 	);

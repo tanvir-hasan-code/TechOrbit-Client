@@ -276,7 +276,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 md:p-6 overflow-scroll">
+        <div className="p-4 md:p-6 overflow-auto">
           <Outlet />
         </div>
       </div>

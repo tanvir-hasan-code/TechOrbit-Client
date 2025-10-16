@@ -7,10 +7,12 @@ import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import MyProfile from "../Dashboard/MyProfile/MyProfile";
 import PrivateRoute from "../Routes/PrivateRoute";
 import ManageUsers from "../Dashboard/ManageUsers/ManageUsers";
+import ErrorElement from "../Components/Error/ErrorElement";
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
+		errorElement: <ErrorElement/>,
 		Component: RootLayout,
 		children: [
 			{
@@ -21,8 +23,13 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: "/dashboard",
-		element: <PrivateRoute><DashboardLayout/></PrivateRoute>,
+		element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+		errorElement: <ErrorElement/>,
 		children: [
+			{
+				path: "*",
+				Component: ErrorElement
+		},
 			{
 				path: "profile",
 				Component: MyProfile
