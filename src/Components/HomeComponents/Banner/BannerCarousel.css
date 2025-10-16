@@ -1,0 +1,50 @@
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 1s ease forwards;
+}
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 1.5s ease forwards;
+}
+.animate-bounce-slow {
+  animation: bounceSlow 4s ease-in-out infinite;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  transition: all 0.3s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scale(1.2);
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
+}
+.swiper-pagination-bullet-active {
+  background: #6366f1;
+}
