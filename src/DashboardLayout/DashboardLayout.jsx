@@ -9,7 +9,7 @@ import {
   FaClipboardList,
   FaBars,
 } from "react-icons/fa";
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import TechOrbitLogo from "../Shared/TechOrbitLogo/TechOrbitLogo";
@@ -18,6 +18,107 @@ const DashboardLayout = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLink = (
+    <ul className="menu p-2 mt-4 space-y-2">
+      <li>
+        <NavLink
+          to="/dashboard"
+          end
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaHome /> {open && <span>Home</span>}
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/profile"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaUser /> {open && <span>My Profile</span>}
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/manage-users"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaUsers /> {open && <span>Manage Users</span>}
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/reports"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaClipboardList /> {open && <span>Report Posts</span>}
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/analytics"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaChartBar /> {open && <span>Analytics</span>}
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/settings"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaCog /> {open && <span>Settings</span>}
+        </NavLink>
+      </li>
+    </ul>
+  );
 
   const handleLogout = () => {
     logOut()
@@ -41,18 +142,8 @@ const DashboardLayout = () => {
       });
   };
 
-  // Sidebar menu items
-  const menuItems = [
-    { path: "/", icon: <FaHome />, label: "Home" },
-    { path: "/dashboard/profile", icon: <FaUser />, label: "My Profile" },
-    { path: "/dashboard/manage-users", icon: <FaUsers />, label: "Manage Users" },
-    { path: "/dashboard/reports", icon: <FaClipboardList />, label: "Report Posts" },
-    { path: "/dashboard/analytics", icon: <FaChartBar />, label: "Analytics" },
-    { path: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
-  ];
-
   return (
-    <div className="flex min-h-screen bg-base-200">
+    <div className="flex min-h-screen max-h-screen bg-base-200 overflow-hidden">
       {/* Sidebar */}
       <div
         className={`${
@@ -71,17 +162,7 @@ const DashboardLayout = () => {
 
           {/* Menu Links */}
           <ul className="menu p-2 mt-4 space-y-1">
-            {menuItems.map((item, index) => (
-              <li key={index}>
-                <Link
-                  to={item.path}
-                  className="flex items-center gap-3 hover:bg-blue-500 rounded-lg px-3 py-2 transition-all"
-                >
-                  {item.icon}
-                  {open && <span>{item.label}</span>}
-                </Link>
-              </li>
-            ))}
+            {navLink}
           </ul>
         </div>
 
@@ -117,7 +198,10 @@ const DashboardLayout = () => {
 
       {/* Mobile Sidebar */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-black/50 z-50 md:hidden" onClick={() => setMobileOpen(false)}>
+        <div
+          className="fixed inset-0 bg-black/50 z-50 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        >
           <div
             className="absolute left-0 top-0 w-64 h-full bg-gradient-to-b from-blue-600 to-indigo-700 text-white shadow-2xl p-5 flex flex-col justify-between"
             onClick={(e) => e.stopPropagation()}
@@ -131,18 +215,9 @@ const DashboardLayout = () => {
               </div>
 
               <ul className="menu space-y-2">
-                {menuItems.map((item, index) => (
-                  <li key={index}>
-                    <Link
-                      to={item.path}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3 hover:bg-blue-500 rounded-lg px-3 py-2 transition-all"
-                    >
-                      {item.icon}
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
+                <ul className="">
+                  {navLink}
+                </ul>
               </ul>
             </div>
 
@@ -201,7 +276,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 md:p-6">
+        <div className="p-4 md:p-6 overflow-scroll">
           <Outlet />
         </div>
       </div>
