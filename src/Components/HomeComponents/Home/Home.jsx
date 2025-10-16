@@ -17,7 +17,7 @@ const Home = () => {
 			<LatestBlogsSection />
 			<JoinAsMaker />
 			<TipsInsights />
-			<AppDownload/>
+			<AppDownload />
 			<SubscribeSection/>
 		</div>
 	);

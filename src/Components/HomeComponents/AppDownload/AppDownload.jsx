@@ -11,7 +11,7 @@ const AppDownload = () => {
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-center md:text-left"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-3">Get TechOrbit App 📲</h2>
@@ -37,7 +37,7 @@ const AppDownload = () => {
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         />
       </div>
     </section>

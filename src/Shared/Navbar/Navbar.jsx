@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import TechOrbitLogo from "../TechOrbitLogo/TechOrbitLogo";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -40,18 +40,26 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          <Link
+          <NavLink
             to="/"
             className="text-gray-700 font-medium hover:text-blue-600 transition"
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/products"
             className="text-gray-700 font-medium hover:text-blue-600 transition"
           >
             Products
-          </Link>
+          </NavLink>
+          {user && (
+            <NavLink
+              to="/add-product"
+              className="text-gray-700 font-medium hover:text-blue-600 transition"
+            >
+              Add Product
+            </NavLink>
+          )}
 
           {!user ? (
             <>

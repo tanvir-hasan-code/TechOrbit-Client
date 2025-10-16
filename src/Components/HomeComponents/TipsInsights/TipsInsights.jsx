@@ -33,11 +33,11 @@ const TipsInsights = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {tips.map((tip, index) => (
             <motion.div
-              key={tip.id}
+				  key={tip.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               className="p-6 bg-base-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
             >
               <h3 className="text-xl font-semibold mb-2">{tip.title}</h3>
