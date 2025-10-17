@@ -1,0 +1,20 @@
+.react-tag-input {
+  border-radius: 1rem !important;
+  padding: 0.75rem !important;
+  background-color: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.react-tag-input__tag {
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  color: white !important;
+  border-radius: 9999px !important;
+  padding: 6px 14px !important;
+  font-weight: 500 !important;
+}
+
+.react-tag-input__tag__remove {
+  margin-left: 6px !important;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -8,6 +8,7 @@ import MyProfile from "../Dashboard/MyProfile/MyProfile";
 import PrivateRoute from "../Routes/PrivateRoute";
 import ManageUsers from "../Dashboard/ManageUsers/ManageUsers";
 import ErrorElement from "../Components/Error/ErrorElement";
+import AddProduct from "../Components/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
 	{
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
 			{
 				index: true,
 				Component: Home
+			},
+			{
+				path: "/add-product",
+				element: <PrivateRoute><AddProduct/></PrivateRoute>
 			}
 		]
 	},
