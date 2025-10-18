@@ -8,6 +8,7 @@ import {
   FaHome,
   FaClipboardList,
   FaBars,
+  FaClock,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../Hooks/useAuth";
@@ -67,6 +68,22 @@ const DashboardLayout = () => {
           }
         >
           <FaUsers /> {open && <span>Manage Users</span>}
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard/pending-post"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+          }
+        >
+          <FaClock  />
+          {open && <span>Pending Post</span>}
         </NavLink>
       </li>
 
@@ -143,7 +160,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex min-h-screen max-h-screen bg-base-200 overflow-hidden">
+    <div className="flex min-h-screen max-h-screen overflow-hidden bg-base-200 ">
       {/* Sidebar */}
       <div
         className={`${
@@ -161,9 +178,7 @@ const DashboardLayout = () => {
           </div>
 
           {/* Menu Links */}
-          <ul className="menu p-2 mt-4 space-y-1">
-            {navLink}
-          </ul>
+          <ul className="menu p-2 mt-4 space-y-1">{navLink}</ul>
         </div>
 
         {/* Bottom User Info */}
@@ -215,9 +230,7 @@ const DashboardLayout = () => {
               </div>
 
               <ul className="menu space-y-2">
-                <ul className="">
-                  {navLink}
-                </ul>
+                <ul className="">{navLink}</ul>
               </ul>
             </div>
 
@@ -276,8 +289,8 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 md:p-6 overflow-auto">
-          <Outlet />
+        <div className="p-4 md:p-6 overflow-x-scroll">
+          <Outlet />  
         </div>
       </div>
     </div>

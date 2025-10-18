@@ -10,6 +10,7 @@ import ManageUsers from "../Dashboard/ManageUsers/ManageUsers";
 import ErrorElement from "../Components/Error/ErrorElement";
 import AddProduct from "../Components/AddProduct/AddProduct";
 import Products from "../Components/Products/Products";
+import PendingPost from "../Dashboard/PendingPost/PendingPost";
 
 export const router = createBrowserRouter([
 	{
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
 			{
 				path: "manage-users",
 				Component: ManageUsers
+			},
+			{
+				path: "pending-post",
+				element: <PendingPost/>
 			}
 		]
 	},

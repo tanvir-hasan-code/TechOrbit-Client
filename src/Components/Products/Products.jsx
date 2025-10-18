@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaTable, FaThLarge } from "react-icons/fa";
 import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 {
   motion;
 }
@@ -252,9 +253,7 @@ const Products = () => {
         </div>
 
         {isLoading ? (
-          <p className="text-center text-blue-600 text-xl">
-            Loading products...
-          </p>
+          <PrimaryLoaderPage/>
         ) : isError ? (
           <p className="text-center text-red-600 text-xl">
             Failed to load products!
