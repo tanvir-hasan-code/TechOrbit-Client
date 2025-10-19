@@ -5,7 +5,9 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
-{motion}
+{
+  motion;
+}
 
 const PendingPost = () => {
   const axiosSecure = useAxiosSecure();
@@ -84,10 +86,27 @@ const PendingPost = () => {
     }
   };
 
+  if (isLoading) {
+    return <PrimaryLoaderPage />;
+  }
+
+  if (data?.length === 0) {
+    return (
+      <div className="text-center py-16 bg-white rounded-2xl shadow-lg">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
+          alt="No Data"
+          className="w-28 mx-auto mb-4 opacity-80"
+        />
+        <h3 className="text-gray-500 text-lg font-medium">No Data Found</h3>
+      </div>
+    );
+  }
+
   // 🧩 Main UI
   return (
     <motion.div
-      className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white overflow-hidden p-4 md:p-6"
+      className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white overflow-scroll  p-4 md:p-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -96,164 +115,89 @@ const PendingPost = () => {
         <FaClock className="text-blue-500" /> Pending Posts
       </h2>
 
-      {/* Loading / No Data */}
-      {isLoading ? (
-        <PrimaryLoaderPage />
-      ) : data?.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl shadow-lg">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
-            alt="No Data"
-            className="w-28 mx-auto mb-4 opacity-80"
-          />
-          <h3 className="text-gray-500 text-lg font-medium">No Data Found</h3>
-        </div>
-      ) : (
-        <>
-          {/* 🖥️ Large Screen → Table */}
-          <div className="hidden lg:block overflow-x-auto bg-white rounded-2xl shadow-lg border border-gray-200">
-            <table className="table-auto w-full min-w-[800px] text-sm">
-              <thead className="bg-blue-600 text-white uppercase">
-                <tr>
-                  <th className="px-3 py-3">#</th>
-                  <th className="px-3 py-3 text-left">Product</th>
-                  <th className="px-3 py-3 text-left">Owner</th>
-                  <th className="px-3 py-3">Status</th>
-                  <th className="px-3 py-3 text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.map((product, index) => (
-                  <motion.tr
-                    key={product._id}
-                    className="hover:bg-blue-50 transition border-b"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <td className="px-3 py-3 font-semibold">{index + 1}</td>
-                    <td className="px-3 py-3">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={product.productImage}
-                          alt={product.productName}
-                          className="w-12 h-12 rounded-lg border object-cover"
-                        />
-                        <div>
-                          <p className="font-medium text-gray-800">
-                            {product.productName}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {product.tags?.slice(0, 2).join(", ")}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-3 py-3 flex items-center gap-2">
-                      <img
-                        src={product.ownerImage}
-                        alt={product.ownerName}
-                        className="w-8 h-8 rounded-full border"
-                      />
-                      <span className="text-gray-700">{product.ownerName}</span>
-                    </td>
-                    <td className="px-3 py-3">
-                      <span className={getStatusBadge(product.status)}>
-                        {product.status}
-                      </span>
-                    </td>
-                    <td className="px-3 py-3 flex text-center space-x-1">
-                      <button
-                        className="btn btn-sm bg-blue-100 hover:bg-blue-200 text-blue-700 border-none rounded-lg"
-                        onClick={() => setSelectedProduct(product)}
-                      >
-                        <FaEye /> View
-                      </button>
-                      <button
-                        className="btn btn-sm bg-green-100 hover:bg-green-200 text-green-700 border-none rounded-lg"
-                        onClick={() =>
-                          confirmStatusChange(product._id, "published")
-                        }
-                      >
-                        <FaCheck /> Published
-                      </button>
-                      <button
-                        className="btn btn-sm bg-red-100 hover:bg-red-200 text-red-700 border-none rounded-lg"
-                        onClick={() =>
-                          confirmStatusChange(product._id, "declined")
-                        }
-                      >
-                        <FaTimes /> Decline
-                      </button>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      {/* 🖥️ Large Screen → Table */}
 
-          {/* 📱 Small Screen → Card Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
-            {data?.map((product, index) => (
-              <motion.div
-                key={product._id}
-                className="bg-white shadow-md rounded-xl p-4 border border-gray-200"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <img
-                  src={product.productImage}
-                  alt={product.productName}
-                  className="w-full h-48 object-cover rounded-lg mb-3"
-                />
-                <h3 className="font-semibold text-gray-800 text-lg">
-                  {product.productName}
-                </h3>
-                <p className="text-sm text-gray-500 mb-2">
-                  {product.tags?.slice(0, 2).join(", ")}
-                </p>
-                <div className="flex items-center gap-2 mb-3">
-                  <img
-                    src={product.ownerImage}
-                    alt={product.ownerName}
-                    className="w-8 h-8 rounded-full border"
-                  />
-                  <span className="text-gray-700 text-sm">
-                    {product.ownerName}
-                  </span>
-                </div>
-                <div className="mb-3">
-                  <span className={getStatusBadge(product.status)}>
-                    {product.status}
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-2 justify-between">
-                  <button
-                    className="btn btn-sm bg-blue-100 hover:bg-blue-200 text-blue-700 border-none rounded-lg"
-                    onClick={() => setSelectedProduct(product)}
-                  >
-                    <FaEye /> View
-                  </button>
-                  <button
-                    className="btn btn-sm bg-green-100 hover:bg-green-200 text-green-700 border-none rounded-lg"
-                    onClick={() =>
-                      confirmStatusChange(product._id, "published")
-                    }
-                  >
-                    <FaCheck /> Publish
-                  </button>
-                  <button
-                    className="btn btn-sm bg-red-100 hover:bg-red-200 text-red-700 border-none rounded-lg"
-                    onClick={() => confirmStatusChange(product._id, "declined")}
-                  >
-                    <FaTimes /> Decline
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </>
+      {!isLoading && data && (
+        <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
+          <table className="min-w-[1000px] overflow-scroll w-full text-sm">
+            <thead className="bg-blue-600 text-white uppercase">
+              <tr>
+                <th className="px-3 py-3">#</th>
+                <th className="px-3 py-3 text-left">Product</th>
+                <th className="px-3 py-3 text-left">Owner</th>
+                <th className="px-3 py-3">Status</th>
+                <th className="px-3 py-3 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((product, index) => (
+                <motion.tr
+                  key={product._id}
+                  className="hover:bg-blue-50 transition border-b"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <td className="px-3 py-3 font-semibold">{index + 1}</td>
+                  <td className="px-3 py-3">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={product.productImage}
+                        alt={product.productName}
+                        className="w-12 h-12 rounded-lg border object-cover"
+                      />
+                      <div>
+                        <p className="font-medium text-gray-800">
+                          {product.productName}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {product.tags?.slice(0, 2).join(", ")}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-3 py-3 flex items-center gap-2">
+                    <img
+                      src={product.ownerImage}
+                      alt={product.ownerName}
+                      className="w-8 h-8 rounded-full border"
+                    />
+                    <span className="text-gray-700">{product.ownerName}</span>
+                  </td>
+                  <td className="px-3 py-3">
+                    <span className={getStatusBadge(product.status)}>
+                      {product.status}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 flex text-center space-x-1">
+                    <button
+                      className="btn btn-sm bg-blue-100 hover:bg-blue-200 text-blue-700 border-none rounded-lg"
+                      onClick={() => setSelectedProduct(product)}
+                    >
+                      <FaEye /> View
+                    </button>
+                    <button
+                      className="btn btn-sm bg-green-100 hover:bg-green-200 text-green-700 border-none rounded-lg"
+                      onClick={() =>
+                        confirmStatusChange(product._id, "published")
+                      }
+                    >
+                      <FaCheck /> Published
+                    </button>
+                    <button
+                      className="btn btn-sm bg-red-100 hover:bg-red-200 text-red-700 border-none rounded-lg"
+                      onClick={() =>
+                        confirmStatusChange(product._id, "declined")
+                      }
+                    >
+                      <FaTimes /> Decline
+                    </button>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {/* 🔹 Modal */}

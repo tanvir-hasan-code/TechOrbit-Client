@@ -70,7 +70,7 @@ const ProductsList = ({
               </div>
               <div className="flex justify-between items-center mt-2">
                 <Link
-                  to={`/products/${product._id}`}
+                  to={`/product/details/${product._id}`}
                   className="btn btn-sm btn-info rounded-full"
                 >
                   Details

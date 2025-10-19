@@ -7,14 +7,16 @@ import useAuth from "../../Hooks/useAuth";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-{motion}
+{
+  motion;
+}
 
 const AddProduct = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
-	const [tags, setTags] = useState([]);
-	const axiosSecure = useAxiosSecure();
+  const [tags, setTags] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   // ✅ Form Submit Handler
   const onSubmit = async (data) => {
@@ -27,16 +29,16 @@ const AddProduct = () => {
       ownerEmail: user?.email,
       tags: tags,
       externalLink: data.externalLink,
-		createdAt: new Date().toISOString(),
-		status: "pending",
-		voteCount: 0,
-		isFeatured: false,
-
-
-	};
+      createdAt: new Date().toISOString(),
+      status: "pending",
+      isFeatured: false,
+      upVotes: [],
+      downVotes: [],
+      isReported: [],
+    };
 
     try {
-		const res = await axiosSecure.post("/product", productData);
+      const res = await axiosSecure.post("/product", productData);
 
       if (res.data.insertedId) {
         Swal.fire({
@@ -96,7 +98,9 @@ const AddProduct = () => {
 
           {/* Product Image */}
           <div>
-            <label className="block font-semibold mb-1">Product Image URL *</label>
+            <label className="block font-semibold mb-1">
+              Product Image URL *
+            </label>
             <input
               type="text"
               {...register("productImage", { required: true })}
@@ -162,7 +166,9 @@ const AddProduct = () => {
 
           {/* External Link */}
           <div>
-            <label className="block font-semibold mb-1">External Link (Optional)</label>
+            <label className="block font-semibold mb-1">
+              External Link (Optional)
+            </label>
             <input
               type="text"
               {...register("externalLink")}

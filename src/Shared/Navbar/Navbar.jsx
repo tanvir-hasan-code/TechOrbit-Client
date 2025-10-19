@@ -107,7 +107,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogOut}
-                    className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 text-red-600"
+                    className="w-full btn btn-error text-left px-3 py-2 rounded-lg  text-white "
                   >
                     Logout
                   </button>
@@ -161,6 +161,14 @@ const Navbar = () => {
             >
               Products
             </Link>
+            {user && (
+              <Link
+                to="/add-product"
+                className="text-gray-700 py-2 px-2 rounded-lg hover:bg-blue-50"
+              >
+                Add Products
+              </Link>
+            )}
 
             {!user ? (
               <>
@@ -179,10 +187,19 @@ const Navbar = () => {
               </>
             ) : (
               <div className="mt-3 space-y-2">
-                <p className="font-semibold text-gray-800">
-                  {user.displayName}
-                </p>
-                <p className="text-sm text-gray-500 mb-2">{user.email}</p>
+                <div className="flex items-center gap-2">
+                  <img
+                    className="w-14 h-14 object-cover rounded-full border"
+                    src={user?.photoURL}
+                    alt="Photo not fount"
+                  />
+                  <div>
+                    <p className="font-semibold text-gray-800">
+                      {user.displayName}
+                    </p>
+                    <p className="text-sm text-gray-500 mb-2">{user.email}</p>
+                  </div>
+                </div>
                 <Link
                   to="/dashboard"
                   className="block py-2 px-2 rounded-lg hover:bg-blue-50 text-gray-700"
@@ -191,7 +208,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogOut}
-                  className="w-full py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                  className="w-full btn btn-error py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
                 >
                   Logout
                 </button>

@@ -11,6 +11,7 @@ import ErrorElement from "../Components/Error/ErrorElement";
 import AddProduct from "../Components/AddProduct/AddProduct";
 import Products from "../Components/Products/Products";
 import PendingPost from "../Dashboard/PendingPost/PendingPost";
+import ProductDetails from "../Components/Productdetails/ProductDetails";
 
 export const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/add-product",
 				element: <PrivateRoute><AddProduct/></PrivateRoute>
+			},
+			{
+				path: "/product/details/:id",
+				element: <PrivateRoute><ProductDetails/></PrivateRoute>
 			}
 		]
 	},

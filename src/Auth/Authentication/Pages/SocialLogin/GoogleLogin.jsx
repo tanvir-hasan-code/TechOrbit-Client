@@ -40,6 +40,7 @@ const GoogleLogin = () => {
       })
       .catch((err) => {
         if (err) {
+          console.log(err)
           Swal.fire({
             position: "center",
             icon: "error",

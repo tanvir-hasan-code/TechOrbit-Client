@@ -81,7 +81,7 @@ const isSubscribed = true
 
   return (
     <div className="flex flex-col items-center justify-center p-6">
-      <div className="card w-full md:w-2/3 lg:w-1/2 bg-base-100 shadow-xl border border-gray-200">
+      <div className="card w-full  lg:w-1/2 bg-base-100 shadow-xl border border-gray-200">
         <div className="card-body items-center text-center">
 
           {/* User Info */}

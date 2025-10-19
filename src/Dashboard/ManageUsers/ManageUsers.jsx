@@ -103,7 +103,6 @@ const ManageUsers = () => {
         {/* Users Table or Cards */}
         {users.length > 0 && (
           <div className="grid gap-4 sm:gap-6 md:gap-8">
-            {/* Desktop Table */}
             <div className="hidden lg:block overflow-x-auto rounded-xl transition-all duration-500">
               <table className="table w-full border border-gray-100 shadow-sm">
                 <thead className="bg-indigo-100 text-indigo-800 text-sm sm:text-base">
@@ -151,7 +150,7 @@ const ManageUsers = () => {
                           onChange={(e) =>
                             handleRoleChange(user._id, e.target.value)
                           }
-                          className={`select select-bordered select-sm sm:select-md font-medium ${
+                          className={`select select-bordered w-fit select-sm sm:select-md font-medium ${
                             user.role === "admin"
                               ? "border-red-400 text-red-600"
                               : user.role === "moderator"
