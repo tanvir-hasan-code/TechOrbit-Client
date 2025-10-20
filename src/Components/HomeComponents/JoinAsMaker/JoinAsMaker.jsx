@@ -5,7 +5,7 @@ import { FaRocket } from "react-icons/fa";
 
 const JoinAsMaker = () => {
   return (
-    <section data-aos="flip-down"  className="py-16 bg-base-200" id="join">
+    <section data-aos="flip-down"  className="py-16 mx-5 md:mx-8  bg-base-200" id="join">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

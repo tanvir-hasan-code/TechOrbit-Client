@@ -9,6 +9,7 @@ import {
   FaClipboardList,
   FaBars,
   FaClock,
+  FaBox,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../Hooks/useAuth";
@@ -57,6 +58,21 @@ const DashboardLayout = () => {
 
       <li>
         <NavLink
+          to="/dashboard/myProducts"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+              isActive
+                ? "bg-black text-white shadow-md scale-[1.02]"
+                : "text-gray-100 hover:bg-blue-600 hover:text-white"
+            }`
+          }
+        >
+          <FaBox /> My Products
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
           to="/dashboard/manage-users"
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
@@ -82,7 +98,7 @@ const DashboardLayout = () => {
         }`
           }
         >
-          <FaClock  />
+          <FaClock />
           {open && <span>Pending Post</span>}
         </NavLink>
       </li>
@@ -289,8 +305,8 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 md:p-6 overflow-x-scroll">
-          <Outlet />  
+        <div className="p-4 md:p-6 overflow-auto">
+          <Outlet />
         </div>
       </div>
     </div>

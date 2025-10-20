@@ -6,7 +6,7 @@ import { FaEnvelopeOpenText } from "react-icons/fa";
 const SubscribeSection = () => {
   return (
     <section
-      className="py-16 my-10 bg-gradient-to-r from-blue-600 to-indigo-600 
+      className="py-16 mx-4 my-10 bg-gradient-to-r from-blue-600 to-indigo-600 
       text-white rounded-3xl lg:rounded-tl-full lg:rounded-br-full"
       id="subscribe"
     >

@@ -12,6 +12,8 @@ import AddProduct from "../Components/AddProduct/AddProduct";
 import Products from "../Components/Products/Products";
 import PendingPost from "../Dashboard/PendingPost/PendingPost";
 import ProductDetails from "../Components/Productdetails/ProductDetails";
+import MyProducts from "../Dashboard/MyProducts/MyProducts";
+import Setting from "../Dashboard/Setting/Setting";
 
 export const router = createBrowserRouter([
 	{
@@ -34,7 +36,8 @@ export const router = createBrowserRouter([
 			{
 				path: "/product/details/:id",
 				element: <PrivateRoute><ProductDetails/></PrivateRoute>
-			}
+			},
+			
 		]
 	},
 	{
@@ -57,6 +60,14 @@ export const router = createBrowserRouter([
 			{
 				path: "pending-post",
 				element: <PendingPost/>
+			},
+			{
+				path: "myProducts",
+				Component: MyProducts
+			},
+			{
+				path: "settings",
+				Component: Setting
 			}
 		]
 	},

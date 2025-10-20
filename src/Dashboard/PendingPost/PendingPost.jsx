@@ -119,7 +119,7 @@ const PendingPost = () => {
 
       {!isLoading && data && (
         <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
-          <table className="min-w-[1000px] overflow-scroll w-full text-sm">
+          <table className="overflow-scroll w-full text-sm">
             <thead className="bg-blue-600 text-white uppercase">
               <tr>
                 <th className="px-3 py-3">#</th>

@@ -5,7 +5,7 @@ import { FaGooglePlay, FaApple } from "react-icons/fa";
 
 const AppDownload = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-2xl lg:rounded-br-[200px]" id="app">
+    <section className="py-16 m-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-2xl lg:rounded-br-[200px]" id="app">
       <div className="max-w-6xl mx-auto px-6  flex flex-col md:flex-row items-center justify-between gap-10">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
