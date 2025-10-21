@@ -36,7 +36,7 @@ const AddProduct = () => {
       downVotes: [],
       isReported: [],
     };
-
+    
     try {
       const res = await axiosSecure.post("/product", productData);
 
@@ -50,7 +50,7 @@ const AddProduct = () => {
         }).then(() => {
           reset();
           setTags([]);
-          navigate("/dashboard/my-products");
+          navigate("/dashboard/myProducts");
         });
       } else {
         Swal.fire({
@@ -60,14 +60,15 @@ const AddProduct = () => {
           confirmButtonColor: "#ef4444",
         });
       }
-    } catch (error) {
+    } catch (err) {
+      const error = err.response?.data?.message || "Unknown error occurred";
       Swal.fire({
         title: "⚠️ Error!",
-        text: "Unable to connect to the server.",
+        text: `${error}`,
         icon: "warning",
         confirmButtonColor: "#f59e0b",
       });
-      console.error(error);
+      console.error(err);
     }
   };
 

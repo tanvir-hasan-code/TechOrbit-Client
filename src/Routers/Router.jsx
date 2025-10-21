@@ -14,6 +14,7 @@ import PendingPost from "../Dashboard/PendingPost/PendingPost";
 import ProductDetails from "../Components/Productdetails/ProductDetails";
 import MyProducts from "../Dashboard/MyProducts/MyProducts";
 import Setting from "../Dashboard/Setting/Setting";
+import ReportPost from "../Dashboard/ReportPost/ReportPost";
 
 export const router = createBrowserRouter([
 	{
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
 			{
 				path: "myProducts",
 				Component: MyProducts
+			},
+			{
+				path: "reports",
+				Component: ReportPost
 			},
 			{
 				path: "settings",

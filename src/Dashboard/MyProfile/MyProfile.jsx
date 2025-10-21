@@ -11,7 +11,7 @@ const MyProfile = () => {
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [photoFile, setPhotoFile] = useState(null);
   const [loading, setLoading] = useState(false);
-const isSubscribed = true
+const isSubscribed = false
 
   // File change
   const handleFileChange = (e) => {
@@ -107,7 +107,7 @@ const isSubscribed = true
             <p className="text-gray-500">{user?.email}</p>
 
             {/* Subscription Status */}
-            {isSubscribed ==true ? (
+            {isSubscribed ? (
               <button
                 disabled
                 className="mt-3 btn bg-gradient-to-r from-yellow-400 to-orange-500 border-none text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
@@ -119,7 +119,7 @@ const isSubscribed = true
                 onClick={handleSubscribeClick}
                 className="mt-3 btn bg-gradient-to-r from-purple-500 to-pink-500 border-none text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
               >
-                Subscribe Now
+                Subscribe Now $10
               </button>
             )}
           </div>
