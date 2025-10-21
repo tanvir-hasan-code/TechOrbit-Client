@@ -22,7 +22,7 @@ const TechOrbitLogo = ({ size = "h-10 w-10", className = "", textColor = "text-b
           {letters.map((letter, index) => (
             <span
               key={index}
-              className="wave"
+              className="wave "
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {letter}

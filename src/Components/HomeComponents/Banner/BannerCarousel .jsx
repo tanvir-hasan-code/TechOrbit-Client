@@ -62,7 +62,7 @@ const slides = [
 
 const BannerCarousel = () => {
   return (
-    <div className="w-full max-h-screen my-5   overflow-hidden relative">
+    <div className="w-full max-h-screen my-5 rounded-xl   overflow-hidden relative">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={30}
