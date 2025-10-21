@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo"; // ✅ Logo Import
 
 const Register = () => {
   const { createUser, updateUserProfile, setLoading } = useAuth();
@@ -24,10 +25,7 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const name = data.name;
-    const photo = data.photo;
-    const email = data.email;
-    const password = data.password;
+    const { name, photo, email, password } = data;
 
     try {
       const res = await createUser(email, password);
@@ -38,8 +36,8 @@ const Register = () => {
       });
 
       const profile = {
-        email: email,
-        name: name,
+        email,
+        name,
         role: "user",
         create_at: new Date().toISOString(),
         last_signIn: new Date().toISOString(),
@@ -61,47 +59,43 @@ const Register = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "User Created Failed!",
+          title: "User Creation Failed!",
           showConfirmButton: false,
           timer: 1500,
         });
         setLoading(false);
       }
     } catch (err) {
-      if (err) {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: err.message || "User Created Failed!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        setLoading(false);
-      }
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.message || "User Creation Failed!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setLoading(false);
     }
   };
 
   const password = watch("password");
 
   return (
-    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-green-50 via-white to-green-100">
+    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-green-50 via-white to-green-100 relative">
+      {/* ✅ Logo (No Back Button) */}
+      <div className="absolute top-6 left-6 flex items-center gap-3">
+        <TechOrbitLogo textColor="text-green-500"/>
+      </div>
+
       {/* Left Side: Form */}
-      <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
-        <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
+      <div className="md:w-1/2 flex flex-col justify-center items-center mt-14 lg:mt-0 p-5 lg:p-8">
+        <div className="w-full max-w-md bg-white p-5 lg:mt-12 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
           <h2 className="text-4xl font-extrabold mb-8 text-green-600 text-center">
             Create Account
           </h2>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-5"
-          >
-            {/* Name Field */}
-            <div
-              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                            focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md"
-            >
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+            {/* Name */}
+            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
               <FaUser className="text-gray-400 text-xl" />
               <input
                 type="text"
@@ -110,18 +104,10 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.name && (
-              <span className="text-red-500 text-sm ml-2">
-                {errors.name.message}
-              </span>
-            )}
+            {errors.name && <span className="text-red-500 text-sm ml-2">{errors.name.message}</span>}
 
-            {/* Email Field */}
-            <div
-              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                            focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md"
-            >
+            {/* Email */}
+            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
               <FaEnvelope className="text-gray-400 text-xl" />
               <input
                 type="email"
@@ -130,18 +116,10 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.email && (
-              <span className="text-red-500 text-sm ml-2">
-                {errors.email.message}
-              </span>
-            )}
+            {errors.email && <span className="text-red-500 text-sm ml-2">{errors.email.message}</span>}
 
-            {/* Photo URL Field */}
-            <div
-              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                            focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md"
-            >
+            {/* Photo URL */}
+            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
               <FaImage className="text-gray-400 text-xl" />
               <input
                 type="text"
@@ -151,12 +129,8 @@ const Register = () => {
               />
             </div>
 
-            {/* Password Field */}
-            <div
-              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                            focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md"
-            >
+            {/* Password */}
+            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
               <FaLock className="text-gray-400 text-xl" />
               <input
                 type="password"
@@ -165,72 +139,54 @@ const Register = () => {
                 className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
               />
             </div>
-            {errors.password && (
-              <span className="text-red-500 text-sm ml-2">
-                {errors.password.message}
-              </span>
-            )}
+            {errors.password && <span className="text-red-500 text-sm ml-2">{errors.password.message}</span>}
 
-            {/* Confirm Password Field */}
+            {/* Confirm Password */}
             <div className="flex flex-col gap-1">
-              <div
-                className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                              focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300
-                              shadow-sm hover:shadow-md"
-              >
+              <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-green-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
                 <FaLock className="text-gray-400 text-xl" />
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   {...register("confirmPassword", {
                     required: "Confirm Password is required",
-                    validate: (value) =>
-                      value === password || "Passwords do not match",
+                    validate: (value) => value === password || "Passwords do not match",
                   })}
                   className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
                 />
               </div>
               {errors.confirmPassword && (
-                <span className="text-red-500 text-sm ml-2">
-                  {errors.confirmPassword.message}
-                </span>
+                <span className="text-red-500 text-sm ml-2">{errors.confirmPassword.message}</span>
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* ✅ Register Button with Logo */}
             <button
               type="submit"
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-2xl
-                         shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-semibold text-lg"
+              className="flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-semibold text-lg"
             >
-              Register
+           Register
             </button>
 
             {/* Already have account */}
             <p className="text-center text-gray-500 text-sm">
               Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-green-600 font-semibold cursor-pointer hover:underline"
-              >
+              <Link to="/login" className="text-green-600 font-semibold cursor-pointer hover:underline">
                 Login
               </Link>
             </p>
           </form>
-          {/* Google Signup Button */}
+
+          {/* Google Signup */}
           <div className="flex justify-center mt-2">
             <GoogleLogin />
           </div>
         </div>
       </div>
 
-      {/* Right Side: Lottie Animation */}
-      <div className="md:w-1/2 flex justify-center items-center p-8 bg-gradient-to-br from-green-50 to-white">
-        <Lottie
-          animationData={registerAnimation}
-          loop={true}
-          className="w-80 h-80 md:w-96 md:h-96"
-        />
+      {/* Right Side: Animation */}
+      <div className="md:w-1/2 pt-16 md:pt-0 flex justify-center items-center p-8 bg-gradient-to-br from-green-50 to-white">
+        <Lottie animationData={registerAnimation} loop={true} className="w-80 h-80 md:w-96 md:h-96" />
       </div>
     </div>
   );

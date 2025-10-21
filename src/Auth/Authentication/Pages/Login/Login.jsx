@@ -1,19 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaArrowLeft } from "react-icons/fa";
 import Lottie from "lottie-react";
-import loginAnimation from "../../../../assets/Lottie/user-login.json"; // Lottie JSON file path
+import loginAnimation from "../../../../assets/Lottie/user-login.json";
 import GoogleLogin from "../SocialLogin/GoogleLogin";
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const { signInUser, setLoading } = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from || "/";
-  const navigate = useNavigate();
 
   const {
     register,
@@ -27,22 +27,21 @@ const LoginForm = () => {
 
     try {
       const res = await signInUser(email, password);
-
       if (res.user) {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "User Created Successfully!",
+          title: "Logged in Successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
         setLoading(false);
-        navigate(from)
+        navigate(from);
       } else {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "User Created Failed!",
+          title: "Login Failed!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -52,7 +51,7 @@ const LoginForm = () => {
       Swal.fire({
         position: "center",
         icon: "error",
-        title: err.message || "User Create Failed!",
+        title: err.message || "Login Failed!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -61,9 +60,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100">
+    <div className="flex flex-col-reverse md:flex-row min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-100 relative">
+      {/* Back Button & Logo */}
+      <div className="absolute top-6 left-6 flex items-center gap-3">
+        <TechOrbitLogo textColor="text-blue-500"/>
+      </div>
+
       {/* Left Side: Form */}
-      <div className="md:w-1/2 flex flex-col justify-center items-center p-5 lg:p-8">
+      <div className="md:w-1/2 flex flex-col  justify-center items-center mt-16 lg:mt-0 p-5 lg:p-8">
         <div className="w-full max-w-md bg-white p-5 lg:p-12 rounded-3xl shadow-2xl border border-gray-200">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600 text-center">
             Welcome Back
@@ -74,11 +78,7 @@ const LoginForm = () => {
             className="flex flex-col gap-6"
           >
             {/* Email Field */}
-            <div
-              className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                            focus-within:ring-2 focus-within:ring-blue-400 transition-shadow duration-300
-                            shadow-sm hover:shadow-md"
-            >
+            <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-blue-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
               <FaEnvelope className="text-gray-400 text-xl" />
               <input
                 type="email"
@@ -95,11 +95,7 @@ const LoginForm = () => {
 
             {/* Password Field */}
             <div className="flex flex-col gap-1">
-              <div
-                className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3
-                              focus-within:ring-2 focus-within:ring-blue-400 transition-shadow duration-300
-                              shadow-sm hover:shadow-md"
-              >
+              <div className="flex items-center gap-4 border border-gray-300 rounded-2xl px-5 py-3 focus-within:ring-2 focus-within:ring-blue-400 transition-shadow duration-300 shadow-sm hover:shadow-md">
                 <FaLock className="text-gray-400 text-xl" />
                 <input
                   type="password"
@@ -110,13 +106,14 @@ const LoginForm = () => {
                   className="w-full outline-none text-gray-700 placeholder-gray-400 text-lg"
                 />
               </div>
-              {/* Forgot Password */}
             </div>
             {errors.password && (
               <span className="text-red-500 text-sm ml-2">
                 {errors.password.message}
               </span>
             )}
+
+            {/* Forgot Password */}
             <div className="">
               <button
                 type="button"
@@ -129,8 +126,7 @@ const LoginForm = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-2xl
-                         shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-semibold text-lg"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 font-semibold text-lg"
             >
               Login
             </button>
@@ -146,7 +142,8 @@ const LoginForm = () => {
               </Link>
             </p>
           </form>
-          {/* Google Login Button */}
+
+          {/* Google Login */}
           <div className="flex justify-center mt-3">
             <GoogleLogin />
           </div>
@@ -154,7 +151,7 @@ const LoginForm = () => {
       </div>
 
       {/* Right Side: Lottie Animation */}
-      <div className="md:w-1/2 flex justify-center items-center p-8 bg-gradient-to-br from-blue-50 to-white">
+      <div className="md:w-1/2 pt-16 md:pt-0 flex justify-center items-center p-8 bg-gradient-to-br from-blue-50 to-white">
         <Lottie
           animationData={loginAnimation}
           loop={true}
