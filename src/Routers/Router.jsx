@@ -15,6 +15,7 @@ import ProductDetails from "../Components/Productdetails/ProductDetails";
 import MyProducts from "../Dashboard/MyProducts/MyProducts";
 import Setting from "../Dashboard/Setting/Setting";
 import ReportPost from "../Dashboard/ReportPost/ReportPost";
+import Coupons from "../Dashboard/Coupons/Coupons";
 
 export const router = createBrowserRouter([
 	{
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
 			{
 				path: "reports",
 				Component: ReportPost
+			},
+			{
+				path: "coupons",
+				Component: Coupons
 			},
 			{
 				path: "settings",

@@ -272,7 +272,7 @@ const ProductDetails = () => {
               )}
             </div>
 
-            {/* ⭐ Rating Section (Status এর নিচে) */}
+            {/* ⭐ Rating Section */}
             <div className="mt-4 border-t border-gray-300 pt-3">
               <p className="text-sm text-gray-600 mb-1">
                 Average Rating: {averageRating} / 5

@@ -34,7 +34,7 @@ const MyProducts = () => {
       return res.data;
     },
     onSuccess: (res) => {
-      if (res.deletedCount > 0) {
+      if (res?.success) {
         queryClient.invalidateQueries(["myProducts"]);
         Swal.fire("✅ Deleted!", "Your product has been deleted.", "success");
       } else {
@@ -105,7 +105,7 @@ const MyProducts = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <h2 className="text-4xl font-extrabold text-center mb-6 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 bg-clip-text text-transparent drop-shadow-md">
+      <h2 className="text-4xl font-extrabold text-center mb-6  bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 bg-clip-text text-blue-500 drop-shadow-md">
         🌈 My Products
       </h2>
 
@@ -172,7 +172,7 @@ const MyProducts = () => {
                           onClick={() => handleDelete(product._id)}
                           className="px-3 py-1.5 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 transition-all duration-300 shadow-md"
                         >
-                          <FaTrashAlt className="inline mr-1" /> Delete
+                          <FaTrashAlt className="inline mr-1" /> Delete 
                         </button>
                       </div>
                     </td>
@@ -238,7 +238,7 @@ const MyProducts = () => {
           <div className="modal-action">
             <form method="dialog" className="flex gap-3">
               <button
-                className="btn btn-ghost"
+                className="btn btn-error text-white"
                 onClick={() => setSelectedProduct(null)}
               >
                 Cancel
@@ -252,7 +252,7 @@ const MyProducts = () => {
                     : "bg-gray-300 cursor-not-allowed"
                 }`}
               >
-                Update
+                Update 
               </button>
             </form>
           </div>

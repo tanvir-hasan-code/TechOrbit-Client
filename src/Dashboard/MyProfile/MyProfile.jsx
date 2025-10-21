@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [photoFile, setPhotoFile] = useState(null);
   const [loading, setLoading] = useState(false);
-const isSubscribed = false
+  // const isSubscribed = false;
 
   // File change
   const handleFileChange = (e) => {
@@ -23,7 +26,7 @@ const isSubscribed = false
   const uploadImageToImgbb = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
-	  const apiKey = import.meta.env.VITE_IMGBB_API_KEY; 
+    const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
     const res = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
       method: "POST",
@@ -75,15 +78,22 @@ const isSubscribed = false
     navigate("/payment");
   };
 
+  const { data: currentUser = {} } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/user/${user.email}`);
+      return res.data;
+    }
+  })
+
+
   // Form change check
-  const isFormChanged =
-    displayName !== user?.displayName || photoFile !== null;
+  const isFormChanged = displayName !== user?.displayName || photoFile !== null;
 
   return (
     <div className="flex flex-col items-center justify-center p-6">
       <div className="card w-full  lg:w-1/2 bg-base-100 shadow-xl border border-gray-200">
         <div className="card-body items-center text-center">
-
           {/* User Info */}
           <div className="flex flex-col items-center">
             <div className="avatar">
@@ -107,7 +117,7 @@ const isSubscribed = false
             <p className="text-gray-500">{user?.email}</p>
 
             {/* Subscription Status */}
-            {isSubscribed ? (
+            {currentUser?.isVerified ? (
               <button
                 disabled
                 className="mt-3 btn bg-gradient-to-r from-yellow-400 to-orange-500 border-none text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
@@ -147,8 +157,8 @@ const isSubscribed = false
               </label>
               <input
                 type="text"
-							  defaultValue={user?.email}
-							  readOnly
+                defaultValue={user?.email}
+                readOnly
                 className="input input-bordered w-full"
                 placeholder="Enter your name"
               />

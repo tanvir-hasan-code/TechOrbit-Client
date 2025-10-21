@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaTable, FaThLarge } from "react-icons/fa";
+import { FaExternalLinkAlt, FaTable, FaThLarge, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
-{
-  motion;
-}
+import useAuth from "../../Hooks/useAuth";
+{motion}
 
-// ProductsList Component for only data rendering
 const ProductsList = ({
   products,
   viewMode,
@@ -17,6 +15,8 @@ const ProductsList = ({
   toggleDesc,
   currentPage,
   limit,
+  voteMutation,
+  user,
 }) => {
   return viewMode === "grid" ? (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -25,68 +25,108 @@ const ProductsList = ({
           No products found!
         </p>
       ) : (
-        products.map((product) => (
-          <motion.div
-            key={product._id}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="card bg-gradient-to-br from-white via-blue-50 to-sky-100 shadow-xl border border-blue-200 rounded-3xl p-4 hover:scale-105 transform transition-all"
-          >
-            <figure>
-              <img
-                src={product.productImage}
-                alt={product.productName}
-                className="w-full h-48 object-cover rounded-2xl"
-              />
-            </figure>
-            <div className="card-body p-3">
-              <h2 className="text-xl font-bold text-blue-700 mb-1">
-                {product.productName}
-              </h2>
-              <p className="text-gray-600 text-sm mb-3">
-                {expandedDesc[product._id]
-                  ? product.description
-                  : product.description?.slice(0, 30) +
-                    (product.description?.length > 30 ? "..." : "")}
-                {product.description?.length > 30 && (
-                  <button
-                    onClick={() => toggleDesc(product._id)}
-                    className="text-blue-600 font-semibold ml-1"
-                  >
-                    {expandedDesc[product._id] ? "Show Less" : "See More"}
-                  </button>
-                )}
-              </p>
-              <div className="flex items-center gap-3 mb-2">
+        products.map((product) => {
+          const upvotes = product.upVotes?.length || 0;
+          const downvotes = product.downVotes?.length || 0;
+          const hasUpvoted = product.upVotes?.includes(user?.email);
+          const hasDownvoted = product.downVotes?.includes(user?.email);
+
+          return (
+            <motion.div
+              key={product._id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="card bg-gradient-to-br from-white via-blue-50 to-sky-100 shadow-xl border border-blue-200 rounded-3xl p-4 hover:scale-105 transform transition-all"
+            >
+              <figure>
                 <img
-                  src={product.ownerImage}
-                  alt={product.ownerName}
-                  className="w-8 h-8 rounded-full border-2 border-blue-400"
+                  src={product.productImage}
+                  alt={product.productName}
+                  className="w-full h-48 object-cover rounded-2xl"
                 />
-                <span className="font-semibold text-gray-700 text-sm">
-                  {product.ownerName}
-                </span>
+              </figure>
+              <div className="card-body p-3">
+                <h2 className="text-xl font-bold text-blue-700 mb-1">
+                  {product.productName}
+                </h2>
+                <p className="text-gray-600 text-sm mb-3">
+                  {expandedDesc[product._id]
+                    ? product.description
+                    : product.description?.slice(0, 30) +
+                      (product.description?.length > 30 ? "..." : "")}
+                  {product.description?.length > 30 && (
+                    <button
+                      onClick={() => toggleDesc(product._id)}
+                      className="text-blue-600 font-semibold ml-1"
+                    >
+                      {expandedDesc[product._id] ? "Show Less" : "See More"}
+                    </button>
+                  )}
+                </p>
+
+                <div className="flex items-center gap-3 mb-2">
+                  <img
+                    src={product.ownerImage}
+                    alt={product.ownerName}
+                    className="w-8 h-8 rounded-full border-2 border-blue-400"
+                  />
+                  <span className="font-semibold text-gray-700 text-sm">
+                    {product.ownerName}
+                  </span>
+
+                  {/* Upvote/Downvote */}
+                  {user && (
+                    <div className="flex gap-2 ml-auto">
+                      <button
+                        onClick={() =>
+                          voteMutation.mutate({ id: product._id, type: "up" })
+                        }
+                        className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
+                          hasUpvoted
+                            ? "bg-green-100 text-green-700 border-green-400"
+                            : "border-gray-300 hover:bg-green-50"
+                        }`}
+                      >
+                        <FaThumbsUp /> {upvotes}
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          voteMutation.mutate({ id: product._id, type: "down" })
+                        }
+                        className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
+                          hasDownvoted
+                            ? "bg-red-100 text-red-700 border-red-400"
+                            : "border-gray-300 hover:bg-red-50"
+                        }`}
+                      >
+                        <FaThumbsDown /> {downvotes}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex justify-between items-center mt-2">
+                  <Link
+                    to={`/product/details/${product._id}`}
+                    className="btn btn-sm btn-info rounded-full"
+                  >
+                    Details
+                  </Link>
+                  <a
+                    href={product.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center gap-2"
+                  >
+                    Visit <FaExternalLinkAlt />
+                  </a>
+                </div>
               </div>
-              <div className="flex justify-between items-center mt-2">
-                <Link
-                  to={`/product/details/${product._id}`}
-                  className="btn btn-sm btn-info rounded-full"
-                >
-                  Details
-                </Link>
-                <a
-                  href={product.externalLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center gap-2"
-                >
-                  Visit <FaExternalLinkAlt />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        ))
+            </motion.div>
+          );
+        })
       )}
     </div>
   ) : (
@@ -109,49 +149,86 @@ const ProductsList = ({
               </td>
             </tr>
           ) : (
-            products.map((product, index) => (
-              <tr key={product._id} className="hover:bg-blue-50">
-                <td className="px-4 py-2 border text-center">
-                  {(currentPage - 1) * limit + index + 1}
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  <img
-                    src={product.productImage}
-                    alt={product.productName}
-                    className="w-16 h-16 object-cover rounded-xl mx-auto"
-                  />
-                </td>
-                <td className="px-4 py-2 border font-semibold text-blue-700 text-center">
-                  {product.productName}
-                </td>
-                <td className="px-4 py-2 border text-center flex flex-col items-center gap-1">
-                  <img
-                    src={product.ownerImage}
-                    alt={product.ownerName}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <span>{product.ownerName}</span>
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  <div className="flex justify-center gap-2">
-                    <Link
-                      to={`/products/${product._id}`}
-                      className="btn btn-xs btn-info"
-                    >
-                      View
-                    </Link>
-                    <a
-                      href={product.externalLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-xs btn-success flex items-center gap-1"
-                    >
-                      Site <FaExternalLinkAlt className="text-sm" />
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            ))
+            products.map((product, index) => {
+              const upvotes = product.upVotes?.length || 0;
+              const downvotes = product.downVotes?.length || 0;
+              const hasUpvoted = product.upVotes?.includes(user?.email);
+              const hasDownvoted = product.downVotes?.includes(user?.email);
+
+              return (
+                <tr key={product._id} className="hover:bg-blue-50">
+                  <td className="px-4 py-2 border text-center">
+                    {(currentPage - 1) * limit + index + 1}
+                  </td>
+                  <td className="px-4 py-2 border text-center">
+                    <img
+                      src={product.productImage}
+                      alt={product.productName}
+                      className="w-16 h-16 object-cover rounded-xl mx-auto"
+                    />
+                  </td>
+                  <td className="px-4 py-2 border font-semibold text-blue-700 text-center">
+                    {product.productName}
+                  </td>
+                  <td className="px-4 py-2 border text-center flex flex-col items-center gap-1">
+                    <img
+                      src={product.ownerImage}
+                      alt={product.ownerName}
+                      className="w-8 h-8 rounded-full"
+                    />
+                    <span>{product.ownerName}</span>
+
+                    {/* Upvote/Downvote */}
+                    {user && (
+                      <div className="flex gap-1 mt-1">
+                        <button
+                          onClick={() =>
+                            voteMutation.mutate({ id: product._id, type: "up" })
+                          }
+                          className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs ${
+                            hasUpvoted
+                              ? "bg-green-100 text-green-700 border-green-400"
+                              : "border-gray-300 hover:bg-green-50"
+                          }`}
+                        >
+                          <FaThumbsUp /> {upvotes}
+                        </button>
+                        <button
+                          onClick={() =>
+                            voteMutation.mutate({ id: product._id, type: "down" })
+                          }
+                          className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs ${
+                            hasDownvoted
+                              ? "bg-red-100 text-red-700 border-red-400"
+                              : "border-gray-300 hover:bg-red-50"
+                          }`}
+                        >
+                          <FaThumbsDown /> {downvotes}
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border text-center">
+                    <div className="flex justify-center gap-2">
+                      <Link
+                        to={`/products/${product._id}`}
+                        className="btn btn-xs btn-info"
+                      >
+                        View
+                      </Link>
+                      <a
+                        href={product.externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-xs btn-success flex items-center gap-1"
+                      >
+                        Site <FaExternalLinkAlt className="text-sm" />
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
@@ -161,6 +238,7 @@ const ProductsList = ({
 
 const Products = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const initialPage = parseInt(searchParams.get("page")) || 1;
@@ -173,7 +251,7 @@ const Products = () => {
   const [limit, setLimit] = useState(initialLimit);
   const [expandedDesc, setExpandedDesc] = useState({});
 
-  // Debounce
+  // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedSearch(search), 500);
     return () => clearTimeout(timer);
@@ -202,10 +280,19 @@ const Products = () => {
     setExpandedDesc((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // ✅ Pagination logic with "..." display
+  // ✅ Vote Mutation
+  const voteMutation = {
+    mutate: async ({ id, type }) => {
+      await axiosSecure.patch(`/product/vote/${id}`, {
+        userEmail: user.email,
+        type,
+      });
+      // Refresh products after vote
+      setCurrentPage((prev) => prev); // trigger refetch
+    },
+  };
 
   return (
-    // ✅ background remove (white background only)
     <section className="min-h-screen bg-white py-12 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
@@ -253,7 +340,7 @@ const Products = () => {
         </div>
 
         {isLoading ? (
-          <PrimaryLoaderPage/>
+          <PrimaryLoaderPage />
         ) : isError ? (
           <p className="text-center text-red-600 text-xl">
             Failed to load products!
@@ -266,6 +353,8 @@ const Products = () => {
             toggleDesc={toggleDesc}
             currentPage={currentPage}
             limit={limit}
+            voteMutation={voteMutation}
+            user={user}
           />
         )}
 
@@ -286,17 +375,13 @@ const Products = () => {
           {(() => {
             const pages = [];
             const totalToShow = 3;
-
-            // Start and End calculation
             let startPage = Math.max(1, currentPage - 1);
             let endPage = Math.min(totalPages, startPage + totalToShow - 1);
 
-            // Adjust when near the end
             if (endPage - startPage + 1 < totalToShow) {
               startPage = Math.max(1, endPage - totalToShow + 1);
             }
 
-            // 1st page + dots
             if (startPage > 1) {
               pages.push(
                 <button
@@ -304,8 +389,8 @@ const Products = () => {
                   onClick={() => setCurrentPage(1)}
                   className={`px-4 py-2 rounded-full border transition-all ${
                     currentPage === 1
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-blue-600 border-blue-400 hover:bg-blue-100"
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-blue-600 hover:bg-blue-100"
                   }`}
                 >
                   1
@@ -313,14 +398,13 @@ const Products = () => {
               );
               if (startPage > 2) {
                 pages.push(
-                  <span key="start-dots" className="px-2 text-blue-700">
+                  <span key="start-ellipsis" className="px-2 py-2">
                     ...
                   </span>
                 );
               }
             }
 
-            // middle pages
             for (let i = startPage; i <= endPage; i++) {
               pages.push(
                 <button
@@ -328,8 +412,8 @@ const Products = () => {
                   onClick={() => setCurrentPage(i)}
                   className={`px-4 py-2 rounded-full border transition-all ${
                     currentPage === i
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-blue-600 border-blue-400 hover:bg-blue-100"
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-blue-600 hover:bg-blue-100"
                   }`}
                 >
                   {i}
@@ -337,11 +421,10 @@ const Products = () => {
               );
             }
 
-            // end dots + last page
             if (endPage < totalPages) {
               if (endPage < totalPages - 1) {
                 pages.push(
-                  <span key="end-dots" className="px-2 text-blue-700">
+                  <span key="end-ellipsis" className="px-2 py-2">
                     ...
                   </span>
                 );
@@ -352,8 +435,8 @@ const Products = () => {
                   onClick={() => setCurrentPage(totalPages)}
                   className={`px-4 py-2 rounded-full border transition-all ${
                     currentPage === totalPages
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white text-blue-600 border-blue-400 hover:bg-blue-100"
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-blue-600 hover:bg-blue-100"
                   }`}
                 >
                   {totalPages}
