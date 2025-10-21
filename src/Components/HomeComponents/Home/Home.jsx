@@ -7,6 +7,7 @@ import SubscribeSection from '../SubscribeSection/SubscribeSection';
 import JoinAsMaker from '../JoinAsMaker/JoinAsMaker';
 import TipsInsights from '../TipsInsights/TipsInsights';
 import AppDownload from '../AppDownload/AppDownload';
+import CouponSlider from '../CouponSlider/CouponSlider';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
 			<LatestBlogsSection />
 			<JoinAsMaker />
 			<TipsInsights />
+			<CouponSlider/>
 			<AppDownload />
 			<SubscribeSection/>
 		</div>
