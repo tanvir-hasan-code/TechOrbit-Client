@@ -16,7 +16,6 @@ const Coupons = () => {
 	const { role } = useUserRole();
 
 
-  // 🔹 Fetch Coupons using TanStack Query
   const {
     data: coupons = [],
     isLoading,

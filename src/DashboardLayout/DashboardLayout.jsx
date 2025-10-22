@@ -11,6 +11,7 @@ import {
   FaClock,
   FaBox,
   FaTags,
+  FaStar,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../Hooks/useAuth";
@@ -123,6 +124,21 @@ const DashboardLayout = () => {
               }
             >
               <FaClipboardList /> {open && <span>Report Posts</span>}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/create-featured-product"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+      ${
+        isActive
+          ? "bg-black text-white shadow-md scale-[1.02]"
+          : "text-gray-100 hover:bg-blue-600 hover:text-white"
+      }`
+              }
+            >
+              <FaStar /> {open && <span>Create Featured Product</span>}
             </NavLink>
           </li>
         </>

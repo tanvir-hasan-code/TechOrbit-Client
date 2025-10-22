@@ -103,8 +103,8 @@ const CompactCouponCard = ({ coupon }) => {
             <FaCalendarAlt className="text-[10px]" />
             {new Date(coupon.expiryDate).toLocaleDateString("en-US")}
           </div>
-          <p className="flex gap-5">{coupon.usageLimit && <p>Limit: {coupon.usageLimit}</p> } ||
-          { <p>UseCount: {coupon.usedCount }</p> }</p> 
+          <div className="flex gap-5">{coupon.usageLimit && <p>Limit: {coupon.usageLimit}</p> } ||
+          { <p>UseCount: {coupon.usedCount }</p> }</div> 
         </div>
 
         <button

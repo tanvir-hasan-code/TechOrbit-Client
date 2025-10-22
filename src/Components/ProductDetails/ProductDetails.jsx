@@ -20,6 +20,8 @@ import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
+import ProductRatingsSlider from "./ProductRatingsSlider";
 {
   motion;
 }
@@ -58,6 +60,14 @@ const ProductDetails = () => {
     },
   });
 
+  const { data: ratings = [] } = useQuery({
+    queryKey: ["productRatings", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/product/ratings/${id}`);
+      return res.data;
+    },
+  });
+
   // ✅ Fetch Comments
   const { data: comments = [] } = useQuery({
     queryKey: ["comments", id],
@@ -68,7 +78,7 @@ const ProductDetails = () => {
   });
 
   // ✅ Fetch Reports
-  const { data: reports = [] } = useQuery({
+  const { data: reports = [], refetch: refetchReports  } = useQuery({
     queryKey: ["reports", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reports/${id}`);
@@ -108,6 +118,7 @@ const ProductDetails = () => {
         userPhoto: user.photoURL,
       }),
     onSuccess: () => {
+      refetchReports()
       queryClient.invalidateQueries(["reports", id]);
       Swal.fire("Report updated", "", "info");
     },
@@ -260,6 +271,7 @@ const ProductDetails = () => {
                   </button>
                   <button
                     onClick={() => reportMutation.mutate()}
+                    disabled={hasReported || reportMutation.isLoading}
                     className={`flex items-center gap-1 px-3 py-1 rounded-full border transition ${
                       hasReported
                         ? "bg-gray-200 text-gray-600 border-gray-400"
@@ -327,6 +339,10 @@ const ProductDetails = () => {
           </div>
         </div>
       </motion.div>
+
+      <ProductRatingsSlider ratings={ratings} />
+
+      
 
       {/* 💬 Comments Section */}
       <motion.div

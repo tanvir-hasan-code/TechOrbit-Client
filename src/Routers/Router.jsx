@@ -85,7 +85,11 @@ export const router = createBrowserRouter([
       {
         path: "reports",
         element: <MixRole><ReportPost/></MixRole>,
-      },
+		},
+		{
+			path: "create-featured-product",
+			element: <MixRole></MixRole>
+	  },
       {
         path: "coupons",
         Component: Coupons,
