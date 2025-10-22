@@ -106,7 +106,7 @@ const PendingPost = () => {
   // 🧩 Main UI
   return (
     <motion.div
-      className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white overflow-scroll  p-4 md:p-6"
+      className="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white overflow-auto  p-4 md:p-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -119,7 +119,7 @@ const PendingPost = () => {
 
       {!isLoading && data && (
         <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
-          <table className="overflow-scroll w-full text-sm">
+          <table className="min-w-[1000px] overflow-scroll w-full text-sm">
             <thead className="bg-blue-600 text-white uppercase">
               <tr>
                 <th className="px-3 py-3">#</th>

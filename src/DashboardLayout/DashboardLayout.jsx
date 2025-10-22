@@ -16,11 +16,13 @@ import { Link, NavLink, Outlet } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import TechOrbitLogo from "../Shared/TechOrbitLogo/TechOrbitLogo";
+import useUserRole from "../Hooks/useUserRole";
 
 const DashboardLayout = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { role } = useUserRole();
 
   const navLink = (
     <ul className="menu p-2 mt-4 space-y-2">
@@ -68,57 +70,63 @@ const DashboardLayout = () => {
             }`
           }
         >
-          <FaBox /> My Products
+          <FaBox /> {open && <span>My Products</span>}
         </NavLink>
       </li>
 
-      <li>
-        <NavLink
-          to="/dashboard/manage-users"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+      {role === "admin" && (
+        <li>
+          <NavLink
+            to="/dashboard/manage-users"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
         ${
           isActive
             ? "bg-black text-white shadow-md scale-[1.02]"
             : "text-gray-100 hover:bg-blue-600 hover:text-white"
         }`
-          }
-        >
-          <FaUsers /> {open && <span>Manage Users</span>}
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/pending-post"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
-        ${
-          isActive
-            ? "bg-black text-white shadow-md scale-[1.02]"
-            : "text-gray-100 hover:bg-blue-600 hover:text-white"
-        }`
-          }
-        >
-          <FaClock />
-          {open && <span>Pending Post</span>}
-        </NavLink>
-      </li>
+            }
+          >
+            <FaUsers /> {open && <span>Manage Users</span>}
+          </NavLink>
+        </li>
+      )}
 
-      <li>
-        <NavLink
-          to="/dashboard/reports"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+      {["admin", "moderator"].includes(role) && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/pending-post"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
         ${
           isActive
             ? "bg-black text-white shadow-md scale-[1.02]"
             : "text-gray-100 hover:bg-blue-600 hover:text-white"
         }`
-          }
-        >
-          <FaClipboardList /> {open && <span>Report Posts</span>}
-        </NavLink>
-      </li>
+              }
+            >
+              <FaClock />
+              {open && <span>Pending Post</span>}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/reports"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 
+        ${
+          isActive
+            ? "bg-black text-white shadow-md scale-[1.02]"
+            : "text-gray-100 hover:bg-blue-600 hover:text-white"
+        }`
+              }
+            >
+              <FaClipboardList /> {open && <span>Report Posts</span>}
+            </NavLink>
+          </li>
+        </>
+      )}
 
       <li>
         <NavLink
@@ -132,7 +140,7 @@ const DashboardLayout = () => {
         }`
           }
         >
-          <FaTags /> Coupons
+          <FaTags /> {open && <span> Coupons</span>}
         </NavLink>
       </li>
 
@@ -322,7 +330,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 md:p-6 overflow-auto">
+        <div className="p-4 md:p-6 w-full overflow-auto">
           <Outlet />
         </div>
       </div>

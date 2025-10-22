@@ -16,77 +16,100 @@ import MyProducts from "../Dashboard/MyProducts/MyProducts";
 import Setting from "../Dashboard/Setting/Setting";
 import ReportPost from "../Dashboard/ReportPost/ReportPost";
 import Coupons from "../Dashboard/Coupons/Coupons";
+import ForbiddenPage from "../Components/ForbiddenPage/ForbiddenPage";
+import Forbidden403 from "../Components/ForbiddenPage/Forbidden403 ";
+import MixRole from "../Routes/MixRole";
+import AdminRole from "../Routes/adminRole";
 
 export const router = createBrowserRouter([
-	{
-		path: "/",
-		errorElement: <ErrorElement/>,
-		Component: RootLayout,
-		children: [
-			{
-				index: true,
-				Component: Home
-			},
-			{
-				path: "/products",
-				Component: Products
-			},
-			{
-				path: "/add-product",
-				element: <PrivateRoute><AddProduct/></PrivateRoute>
-			},
-			{
-				path: "/product/details/:id",
-				element: <PrivateRoute><ProductDetails/></PrivateRoute>
-			},
-			
-		]
-	},
-	{
-		path: "/dashboard",
-		element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
-		errorElement: <ErrorElement/>,
-		children: [
-			{
-				path: "*",
-				Component: ErrorElement
-		},
-			{
-				path: "profile",
-				Component: MyProfile
-			},
-			{
-				path: "manage-users",
-				Component: ManageUsers
-			},
-			{
-				path: "pending-post",
-				element: <PendingPost/>
-			},
-			{
-				path: "myProducts",
-				Component: MyProducts
-			},
-			{
-				path: "reports",
-				Component: ReportPost
-			},
-			{
-				path: "coupons",
-				Component: Coupons
-			},
-			{
-				path: "settings",
-				Component: Setting
-			}
-		]
-	},
-	{
-		path: "/login",
-		Component: LoginForm
-	},
-	{
-		path: "/register",
-		Component: Register
-	}
-])
+  {
+    path: "/",
+    errorElement: <ErrorElement />,
+    Component: RootLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/products",
+        Component: Products,
+      },
+      {
+        path: "/add-product",
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/product/details/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorElement />,
+    children: [
+      {
+        path: "*",
+        Component: ErrorElement,
+      },
+      {
+        path: "profile",
+        Component: MyProfile,
+      },
+      {
+        path: "manage-users",
+        element: <AdminRole><ManageUsers/></AdminRole>
+      },
+      {
+        path: "pending-post",
+        element: <MixRole><PendingPost /></MixRole>,
+      },
+      {
+        path: "myProducts",
+        Component: MyProducts,
+      },
+      {
+        path: "reports",
+        element: <MixRole><ReportPost/></MixRole>,
+      },
+      {
+        path: "coupons",
+        Component: Coupons,
+      },
+      {
+        path: "settings",
+        Component: Setting,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    Component: LoginForm,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
+    path: "/forbidden",
+    Component: ForbiddenPage,
+  },
+  {
+    path: "/forbidden403",
+    Component: Forbidden403,
+  },
+]);

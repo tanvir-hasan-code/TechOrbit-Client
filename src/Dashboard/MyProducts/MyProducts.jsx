@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaBoxOpen, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
-{motion}
+import { NavLink } from "react-router";
+{
+  motion;
+}
 
 const MyProducts = () => {
   const { user } = useAuth();
@@ -26,6 +29,8 @@ const MyProducts = () => {
       return res.data;
     },
   });
+
+  console.log(data);
 
   // ✅ Delete Product
   const deleteMutation = useMutation({
@@ -49,7 +54,10 @@ const MyProducts = () => {
   // ✅ Update Product
   const updateMutation = useMutation({
     mutationFn: async ({ id, updatedProduct }) => {
-      const res = await axiosSecure.patch(`/product/update/${id}`, updatedProduct);
+      const res = await axiosSecure.patch(
+        `/product/update/${id}`,
+        updatedProduct
+      );
       return res.data;
     },
     onSuccess: () => {
@@ -110,7 +118,7 @@ const MyProducts = () => {
       </h2>
 
       <div className="overflow-x-auto bg-white rounded-2xl border border-gray-200 shadow-2xl">
-        <div className="max-h-[420px] overflow-y-auto">
+        <div className="overflow-y-auto">
           <table className="w-full text-sm text-left border-collapse">
             <thead className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white uppercase sticky top-0 z-10">
               <tr>
@@ -172,7 +180,7 @@ const MyProducts = () => {
                           onClick={() => handleDelete(product._id)}
                           className="px-3 py-1.5 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 transition-all duration-300 shadow-md"
                         >
-                          <FaTrashAlt className="inline mr-1" /> Delete 
+                          <FaTrashAlt className="inline mr-1" /> Delete
                         </button>
                       </div>
                     </td>
@@ -180,8 +188,22 @@ const MyProducts = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-center py-10 text-gray-500">
-                    <PrimaryLoaderPage />
+                  <td colSpan="5" className="text-center text-gray-500">
+                    <div className="flex flex-col items-center justify-center py-20 text-gray-500">
+                      <FaBoxOpen className="text-6xl mb-4 text-blue-400" />
+                      <h3 className="text-2xl font-semibold">
+                        No Products Found!
+                      </h3>
+                      <p className="text-sm mt-2">
+                        You haven’t added any products yet.
+                      </p>
+                      <NavLink
+                        to="/add-product"
+                        className="mt-4 btn btn-sm bg-blue-600 text-white rounded-full hover:bg-blue-700"
+                      >
+                        + Add New Product
+                      </NavLink>
+                    </div>
                   </td>
                 </tr>
               )}
@@ -199,7 +221,13 @@ const MyProducts = () => {
 
           {selectedProduct && (
             <div className="space-y-3">
-              {["productName", "productImage", "description", "tags", "externalLink"].map((field) => (
+              {[
+                "productName",
+                "productImage",
+                "description",
+                "tags",
+                "externalLink",
+              ].map((field) => (
                 <div key={field}>
                   <label className="font-semibold text-gray-700 capitalize">
                     {field.replace(/([A-Z])/g, " $1")}
@@ -252,7 +280,7 @@ const MyProducts = () => {
                     : "bg-gray-300 cursor-not-allowed"
                 }`}
               >
-                Update 
+                Update
               </button>
             </form>
           </div>

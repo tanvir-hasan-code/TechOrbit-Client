@@ -4,6 +4,7 @@ import { FaTrash, FaTag, FaCalendarAlt, FaPercent, FaUsers } from "react-icons/f
 import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUserRole from "../../Hooks/useUserRole";
 
 const Coupons = () => {
   const [code, setCode] = useState("");
@@ -11,8 +12,9 @@ const Coupons = () => {
   const [type, setType] = useState("percentage");
   const [value, setValue] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
-  const [usageLimit, setUsageLimit] = useState("");
-  const role = "admin"; // demo role
+	const [usageLimit, setUsageLimit] = useState("");
+	const { role } = useUserRole();
+
 
   // 🔹 Fetch Coupons using TanStack Query
   const {
@@ -236,7 +238,7 @@ const Coupons = () => {
                   <span className="text-blue-600 font-semibold">
                     {c.type === "percentage"
                       ? `${c.value}%`
-                      : `${c.value} Taka`}
+                      : `${c.value} $`}
                   </span>
                 </p>
 

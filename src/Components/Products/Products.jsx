@@ -17,6 +17,7 @@ const ProductsList = ({
   limit,
   voteMutation,
   user,
+  refetch
 }) => {
   return viewMode === "grid" ? (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -80,7 +81,7 @@ const ProductsList = ({
                     <div className="flex gap-2 ml-auto">
                       <button
                         onClick={() =>
-                          voteMutation.mutate({ id: product._id, type: "up" })
+                          voteMutation.mutate({ id: product._id, type: "up" }, refetch())
                         }
                         className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
                           hasUpvoted
@@ -93,7 +94,7 @@ const ProductsList = ({
 
                       <button
                         onClick={() =>
-                          voteMutation.mutate({ id: product._id, type: "down" })
+                          voteMutation.mutate({ id: product._id, type: "down" } , refetch())
                         }
                         className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
                           hasDownvoted
@@ -257,7 +258,7 @@ const Products = () => {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["products", currentPage, limit, debouncedSearch],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -288,6 +289,7 @@ const Products = () => {
         type,
       });
       // Refresh products after vote
+      refetch()
       setCurrentPage((prev) => prev); // trigger refetch
     },
   };
@@ -354,7 +356,8 @@ const Products = () => {
             currentPage={currentPage}
             limit={limit}
             voteMutation={voteMutation}
-            user={user}
+                user={user}
+                refetch={refetch}
           />
         )}
 
