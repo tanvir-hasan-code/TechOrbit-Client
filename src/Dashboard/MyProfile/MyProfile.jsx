@@ -193,7 +193,7 @@ const MyProfile = () => {
   const axiosSecure = useAxiosSecure();
 
   const [displayName, setDisplayName] = useState(user?.displayName || "");
-  const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [photoURL] = useState(user?.photoURL || "");
   const [photoFile, setPhotoFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

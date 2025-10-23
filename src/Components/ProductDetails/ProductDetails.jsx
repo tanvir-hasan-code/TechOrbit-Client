@@ -20,8 +20,8 @@ import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import useAxios from "../../Hooks/useAxios";
-import ProductRatingsSlider from "./ProductRatingsSlider";
+import RatingSlider from "../ProductDetails/RatingSlider/RatingSlider";
+
 {
   motion;
 }
@@ -340,7 +340,7 @@ const ProductDetails = () => {
         </div>
       </motion.div>
 
-      <ProductRatingsSlider ratings={ratings} />
+      <RatingSlider ratings={ratings}></RatingSlider>
 
       
 

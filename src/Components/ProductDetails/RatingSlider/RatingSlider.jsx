@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 
-const ProductRatingsSlider = ({ ratings }) => {
+const RatingSlider = ({ ratings }) => {
   return (
     <div className="my-10 max-w-5xl mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
@@ -58,4 +58,4 @@ const ProductRatingsSlider = ({ ratings }) => {
   );
 };
 
-export default ProductRatingsSlider;
+export default RatingSlider;
