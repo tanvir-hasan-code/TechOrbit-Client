@@ -3,10 +3,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
+import { Link } from "react-router";
 
 const CreateFeaturedProduct = () => {
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
+	const queryClient = useQueryClient();
 
   // ✅ Fetch Published Products
   const { data: products = [], isLoading } = useQuery({
@@ -16,6 +17,7 @@ const CreateFeaturedProduct = () => {
       return res.data?.data || [];
     },
   });
+	
 
   // ✅ Toggle Featured Mutation
   const toggleFeaturedMutation = useMutation({
@@ -63,7 +65,7 @@ const CreateFeaturedProduct = () => {
                     className="w-16 h-16 object-cover rounded-lg mx-auto"
                   />
                 </td>
-                <td className="px-4 py-2 border-b">{prod.productName}</td>
+					<td className="px-4 py-2 border-b"><Link to={`/product/details/${prod._id}`} className="hover:link">{prod.productName}</Link></td>
                 <td className="px-4 py-2 border-b">
                   <div className="flex flex-col items-center">
                     <span className="font-medium">{prod.ownerName}</span>

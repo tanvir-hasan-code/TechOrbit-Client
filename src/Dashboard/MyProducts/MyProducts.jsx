@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 {
   motion;
 }
@@ -108,7 +108,7 @@ const MyProducts = () => {
 
   return (
     <motion.div
-      className="p-6 min-h-screen bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100"
+      className="p-6 min-h-screen w-[90vw] md:w-[65vw] lg:w-full mx-auto bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -149,7 +149,7 @@ const MyProducts = () => {
                         className="w-10 h-10 rounded-lg border object-cover"
                       />
                       <span className="font-medium text-gray-800">
-                        {product.productName}
+                        <Link to={`/product/details/${product._id}`} className="hover:link">{product.productName}</Link>
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center font-semibold text-blue-600">
@@ -169,16 +169,16 @@ const MyProducts = () => {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center">
-                      <div className="flex justify-center gap-2 flex-wrap">
+                      <div className="flex flex-row justify-center gap-2">
                         <button
                           onClick={() => openUpdateModal(product)}
-                          className="px-3 py-1.5 rounded-lg font-semibold text-white bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 hover:from-indigo-600 hover:to-blue-600 transition-all duration-300 shadow-md"
+                          className="px-3 flex py-1.5 rounded-lg font-semibold text-white bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 hover:from-indigo-600 hover:to-blue-600 transition-all duration-300 shadow-md"
                         >
                           <FaEdit className="inline mr-1" /> Update
                         </button>
                         <button
                           onClick={() => handleDelete(product._id)}
-                          className="px-3 py-1.5 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 transition-all duration-300 shadow-md"
+                          className="px-3 py-1.5 flex rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 transition-all duration-300 shadow-md"
                         >
                           <FaTrashAlt className="inline mr-1" /> Delete
                         </button>

@@ -11,6 +11,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 
@@ -231,7 +232,7 @@ const MyProfile = () => {
     }
   };
 
-  const { data: currentUser = {}, refetch } = useQuery({
+  const { data: currentUser = {}, isLoading, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/user/${user.email}`);
@@ -240,6 +241,10 @@ const MyProfile = () => {
   });
 
   const isFormChanged = displayName !== user?.displayName || photoFile !== null;
+
+  if (isLoading) {
+    return <PrimaryLoaderPage/>
+  }
 
   return (
     <div className="flex flex-col items-center justify-center p-6">

@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaTable, FaThLarge, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import {
+  FaExternalLinkAlt,
+  FaTable,
+  FaThLarge,
+  FaThumbsUp,
+  FaThumbsDown,
+} from "react-icons/fa";
 import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
-{motion}
+{
+  motion;
+}
 
 const ProductsList = ({
   products,
@@ -17,7 +25,7 @@ const ProductsList = ({
   limit,
   voteMutation,
   user,
-  refetch
+  refetch,
 }) => {
   return viewMode === "grid" ? (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -49,7 +57,7 @@ const ProductsList = ({
               </figure>
               <div className="card-body p-3">
                 <h2 className="text-xl font-bold text-blue-700 mb-1">
-                  {product.productName}
+                  <Link to={`/product/details/${product._id}`} className="hover:link">{product.productName}</Link>
                 </h2>
                 <p className="text-gray-600 text-sm mb-3">
                   {expandedDesc[product._id]
@@ -77,35 +85,45 @@ const ProductsList = ({
                   </span>
 
                   {/* Upvote/Downvote */}
-                  {user && (
+                  {
                     <div className="flex gap-2 ml-auto">
-                      <button
-                        onClick={() =>
-                          voteMutation.mutate({ id: product._id, type: "up" }, refetch())
-                        }
-                        className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
-                          hasUpvoted
-                            ? "bg-green-100 text-green-700 border-green-400"
-                            : "border-gray-300 hover:bg-green-50"
-                        }`}
-                      >
-                        <FaThumbsUp /> {upvotes}
-                      </button>
+                      <Link to={!user && "/login"}>
+                        <button
+                          onClick={() =>
+                            voteMutation.mutate(
+                              { id: product._id, type: "up" },
+                              refetch()
+                            )
+                          }
+                          className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
+                            hasUpvoted
+                              ? "bg-green-100 text-green-700 border-green-400"
+                              : "border-gray-300 hover:bg-green-50"
+                          }`}
+                        >
+                          <FaThumbsUp /> {upvotes}
+                        </button>
+                      </Link>
 
-                      <button
-                        onClick={() =>
-                          voteMutation.mutate({ id: product._id, type: "down" } , refetch())
-                        }
-                        className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
-                          hasDownvoted
-                            ? "bg-red-100 text-red-700 border-red-400"
-                            : "border-gray-300 hover:bg-red-50"
-                        }`}
-                      >
-                        <FaThumbsDown /> {downvotes}
-                      </button>
+                      <Link to={!user && "/login"}>
+                        <button
+                          onClick={() =>
+                            voteMutation.mutate(
+                              { id: product._id, type: "down" },
+                              refetch()
+                            )
+                          }
+                          className={`flex items-center gap-1 px-2 py-1 rounded-full border transition text-sm ${
+                            hasDownvoted
+                              ? "bg-red-100 text-red-700 border-red-400"
+                              : "border-gray-300 hover:bg-red-50"
+                          }`}
+                        >
+                          <FaThumbsDown /> {downvotes}
+                        </button>
+                      </Link>
                     </div>
-                  )}
+                  }
                 </div>
 
                 <div className="flex justify-between items-center mt-2">
@@ -196,7 +214,10 @@ const ProductsList = ({
                         </button>
                         <button
                           onClick={() =>
-                            voteMutation.mutate({ id: product._id, type: "down" })
+                            voteMutation.mutate({
+                              id: product._id,
+                              type: "down",
+                            })
                           }
                           className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs ${
                             hasDownvoted
@@ -289,7 +310,7 @@ const Products = () => {
         type,
       });
       // Refresh products after vote
-      refetch()
+      refetch();
       setCurrentPage((prev) => prev); // trigger refetch
     },
   };
@@ -356,8 +377,8 @@ const Products = () => {
             currentPage={currentPage}
             limit={limit}
             voteMutation={voteMutation}
-                user={user}
-                refetch={refetch}
+            user={user}
+            refetch={refetch}
           />
         )}
 
