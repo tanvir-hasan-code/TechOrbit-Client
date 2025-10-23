@@ -8,6 +8,7 @@ import TipsInsights from '../TipsInsights/TipsInsights';
 import AppDownload from '../AppDownload/AppDownload';
 import CouponSlider from '../CouponSlider/CouponSlider';
 import useTitle from '../../../Hooks/useTitle';
+import FeaturedProducts from '../FeaturedProducts/FeaturedProducts';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
 	return (
 		<div>
 			<BannerCarousel />
+			<FeaturedProducts/>
 			<CategoriesSection/>
 			<LatestBlogsSection />
 			<JoinAsMaker />
