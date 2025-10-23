@@ -58,7 +58,12 @@ const ProductsList = ({
               </figure>
               <div className="card-body p-3">
                 <h2 className="text-xl font-bold text-blue-700 mb-1">
-                  <Link to={`/product/details/${product._id}`} className="hover:link">{product.productName}</Link>
+                  <Link
+                    to={`/product/details/${product._id}`}
+                    className="hover:link"
+                  >
+                    {product.productName}
+                  </Link>
                 </h2>
                 <p className="text-gray-600 text-sm mb-3">
                   {expandedDesc[product._id]
@@ -86,7 +91,7 @@ const ProductsList = ({
                   </span>
 
                   {/* Upvote/Downvote */}
-                  {
+                  {user?.email !== product?.ownerEmail && (
                     <div className="flex gap-2 ml-auto">
                       <Link to={!user && "/login"}>
                         <button
@@ -124,7 +129,7 @@ const ProductsList = ({
                         </button>
                       </Link>
                     </div>
-                  }
+                  )}
                 </div>
 
                 <div className="flex justify-between items-center mt-2">
@@ -260,7 +265,7 @@ const ProductsList = ({
 };
 
 const Products = () => {
-  useTitle("Products")
+  useTitle("Products");
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();

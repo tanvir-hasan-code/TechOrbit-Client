@@ -9,6 +9,7 @@ import AppDownload from '../AppDownload/AppDownload';
 import CouponSlider from '../CouponSlider/CouponSlider';
 import useTitle from '../../../Hooks/useTitle';
 import FeaturedProducts from '../FeaturedProducts/FeaturedProducts';
+import TrendingProducts from '../TrendingProducts/TrendingProducts';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
 		<div>
 			<BannerCarousel />
 			<FeaturedProducts/>
+			<TrendingProducts/>
 			<CategoriesSection/>
 			<LatestBlogsSection />
 			<JoinAsMaker />

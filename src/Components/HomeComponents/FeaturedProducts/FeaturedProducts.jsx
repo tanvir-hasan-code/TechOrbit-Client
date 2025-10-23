@@ -97,7 +97,7 @@ const FeaturedProducts = () => {
                   className="w-16 h-16 rounded-full object-cover border-2 border-white"
                 />
                 <h3
-                  onClick={() => navigate(`/product/${product._id}`)}
+                  onClick={() => navigate(`/product/details/${product._id}`)}
                   className="text-lg font-semibold hover:text-yellow-300 cursor-pointer"
                 >
                   {product.productName}
@@ -123,7 +123,7 @@ const FeaturedProducts = () => {
               {/* Buttons */}
               <div className="flex gap-2 mt-4">
                 <button
-                  onClick={() => navigate(`/product/${product._id}`)}
+                  onClick={() => navigate(`/product/details/${product._id}`)}
                   className="btn btn-sm btn-outline btn-white flex-1"
                 >
                   View Details

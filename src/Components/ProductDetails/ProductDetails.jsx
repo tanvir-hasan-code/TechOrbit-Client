@@ -173,7 +173,7 @@ const ProductDetails = () => {
       {/* 🔙 Back Button */}
       <div className="max-w-5xl mx-auto mb-4">
         <button
-          onClick={() => navigate("/products")}
+          onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-blue-700 hover:text-blue-900 font-medium bg-blue-100 hover:bg-blue-200 px-4 py-2 rounded-full transition"
         >
           <FaArrowLeft className="text-sm" /> Back to Products
@@ -247,7 +247,7 @@ const ProductDetails = () => {
                 Status: {product.status}
               </span>
 
-              {user && (
+              {user?.email !== product?.ownerEmail && (
                 <div className="flex items-center gap-3 ml-auto">
                   <button
                     onClick={() => voteMutation.mutate({ type: "up" })}
