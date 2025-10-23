@@ -20,6 +20,7 @@ import ForbiddenPage from "../Components/ForbiddenPage/ForbiddenPage";
 import Forbidden403 from "../Components/ForbiddenPage/Forbidden403 ";
 import MixRole from "../Routes/MixRole";
 import AdminRole from "../Routes/adminRole";
+import CreateFeaturedProduct from "../Dashboard/CreateFeaturedProduct/CreateFeaturedProduct";
 
 export const router = createBrowserRouter([
   {
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
 		},
 		{
 			path: "create-featured-product",
-			element: <MixRole></MixRole>
+			element: <MixRole><CreateFeaturedProduct/></MixRole>
 	  },
       {
         path: "coupons",
