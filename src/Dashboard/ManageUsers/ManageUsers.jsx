@@ -103,7 +103,7 @@ const ManageUsers = () => {
         {/* Users Table or Cards */}
         {users.length > 0 && (
           <div className="grid gap-4 sm:gap-6 md:gap-8">
-            <div className="hidden lg:block overflow-x-auto rounded-xl transition-all duration-500">
+            <div className=" lg:block overflow-x-auto rounded-xl transition-all duration-500">
               <table className="table w-full border border-gray-100 shadow-sm">
                 <thead className="bg-indigo-100 text-indigo-800 text-sm sm:text-base">
                   <tr>

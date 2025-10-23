@@ -5,6 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
+import { Link } from "react-router";
 {
   motion;
 }
@@ -118,7 +119,7 @@ const PendingPost = () => {
       {/* 🖥️ Large Screen → Table */}
 
       {!isLoading && data && (
-        <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
+        <div className="overflow-x-auto w-[90vw] md:w-[65vw] lg:w-full mx-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
           <table className="min-w-[1000px] overflow-scroll w-full text-sm">
             <thead className="bg-blue-600 text-white uppercase">
               <tr>
@@ -148,7 +149,7 @@ const PendingPost = () => {
                       />
                       <div>
                         <p className="font-medium text-gray-800">
-                          {product.productName}
+                          <Link to={`/product/details/${product._id}`} className="hover:link">{product.productName}</Link>
                         </p>
                         <p className="text-xs text-gray-500">
                           {product.tags?.slice(0, 2).join(", ")}
