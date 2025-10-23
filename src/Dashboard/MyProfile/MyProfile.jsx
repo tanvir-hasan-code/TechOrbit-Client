@@ -12,6 +12,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
+import useTitle from "../../Hooks/useTitle";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 
@@ -188,6 +189,7 @@ const PaymentForm = ({ setIsModalOpen, refetchUser }) => {
 
 // ✅ Main Component
 const MyProfile = () => {
+  useTitle("My-Profile")
   const { user, updateUserProfile } = useAuth();
   // const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();

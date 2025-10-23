@@ -1,5 +1,4 @@
 import React from 'react';
-import ForbiddenPage from '../../ForbiddenPage/ForbiddenPage';
 import BannerCarousel from '../Banner/BannerCarousel ';
 import CategoriesSection from '../CategoriesSection/CategoriesSection';
 import LatestBlogsSection from '../LatestBlogsSection/LatestBlogsSection';
@@ -8,9 +7,11 @@ import JoinAsMaker from '../JoinAsMaker/JoinAsMaker';
 import TipsInsights from '../TipsInsights/TipsInsights';
 import AppDownload from '../AppDownload/AppDownload';
 import CouponSlider from '../CouponSlider/CouponSlider';
+import useTitle from '../../../Hooks/useTitle';
 
 
 const Home = () => {
+	useTitle("Home")
 	return (
 		<div>
 			<BannerCarousel />

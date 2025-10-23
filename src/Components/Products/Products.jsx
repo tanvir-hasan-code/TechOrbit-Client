@@ -12,6 +12,7 @@ import { Link, useSearchParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
+import useTitle from "../../Hooks/useTitle";
 {
   motion;
 }
@@ -259,6 +260,7 @@ const ProductsList = ({
 };
 
 const Products = () => {
+  useTitle("Products")
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();

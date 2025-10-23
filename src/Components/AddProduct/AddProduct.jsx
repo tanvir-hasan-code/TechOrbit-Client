@@ -7,11 +7,13 @@ import useAuth from "../../Hooks/useAuth";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useTitle from "../../Hooks/useTitle";
 {
   motion;
 }
 
 const AddProduct = () => {
+  useTitle("Add-Product")
   const { user } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();

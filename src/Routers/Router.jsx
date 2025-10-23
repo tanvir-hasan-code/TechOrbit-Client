@@ -21,6 +21,7 @@ import Forbidden403 from "../Components/ForbiddenPage/Forbidden403 ";
 import MixRole from "../Routes/MixRole";
 import AdminRole from "../Routes/adminRole";
 import CreateFeaturedProduct from "../Dashboard/CreateFeaturedProduct/CreateFeaturedProduct";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -66,7 +67,11 @@ export const router = createBrowserRouter([
       {
         path: "*",
         Component: ErrorElement,
-      },
+		},
+		{
+			index: true,
+			Component: DashboardHome
+	  },
       {
         path: "profile",
         Component: MyProfile,

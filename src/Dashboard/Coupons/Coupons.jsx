@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useUserRole from "../../Hooks/useUserRole";
+import useTitle from "../../Hooks/useTitle";
 
 const Coupons = () => {
+	useTitle("Coupons")
   const [code, setCode] = useState("");
   const axiosSecure = useAxiosSecure();
   const [type, setType] = useState("percentage");
@@ -29,7 +31,8 @@ const Coupons = () => {
   });
 
   // 🔹 Create Coupon
-  const handleCreate = async (e) => {
+	const handleCreate = async (e) => {
+	  
     e.preventDefault();
     try {
       const payload = {
@@ -217,7 +220,7 @@ const Coupons = () => {
                 className="p-6 rounded-2xl shadow-md bg-gradient-to-br from-white to-blue-100 border border-blue-200 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className=" text-xs lg:text-xl font-bold text-blue-700 flex items-center gap-2">
+                  <h3 className=" text-xl md:text-xs lg:text-xl font-bold text-blue-700 flex items-center gap-2">
                     <FaTag /> {c.code}
                   </h3>
                   {role === "admin" && (

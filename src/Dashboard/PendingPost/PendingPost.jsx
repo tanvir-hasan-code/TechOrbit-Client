@@ -6,11 +6,13 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import { Link } from "react-router";
+import useTitle from "../../Hooks/useTitle";
 {
   motion;
 }
 
 const PendingPost = () => {
+  useTitle("Pending-Products")
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [selectedProduct, setSelectedProduct] = useState(null);

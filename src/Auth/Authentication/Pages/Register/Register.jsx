@@ -9,8 +9,10 @@ import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo"; // ✅ Logo Import
+import useTitle from "../../../../Hooks/useTitle";
 
 const Register = () => {
+  useTitle("Register")
   const { createUser, updateUserProfile, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const location = useLocation();

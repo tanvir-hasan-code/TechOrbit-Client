@@ -8,8 +8,10 @@ import { Link, useNavigate, useLocation } from "react-router";
 import TechOrbitLogo from "../../../../Shared/TechOrbitLogo/TechOrbitLogo";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useTitle from "../../../../Hooks/useTitle";
 
 const LoginForm = () => {
+  useTitle("Login")
   const { signInUser, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

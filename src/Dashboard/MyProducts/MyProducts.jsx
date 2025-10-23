@@ -7,11 +7,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import useAuth from "../../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
+import useTitle from "../../Hooks/useTitle";
 {
   motion;
 }
 
 const MyProducts = () => {
+	useTitle("My-Products")
   const { user } = useAuth();
   const userEmail = user?.email;
   const axiosSecure = useAxiosSecure();

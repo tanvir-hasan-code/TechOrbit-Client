@@ -6,9 +6,11 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
 import { Link } from "react-router";
+import useTitle from "../../Hooks/useTitle";
 {motion}
 
 const ReportPost = () => {
+	useTitle("Reports")
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState(null);
