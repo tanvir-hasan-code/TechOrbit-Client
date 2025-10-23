@@ -5,6 +5,7 @@ import { FaEye, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PrimaryLoaderPage from "../../LoadingPages/PrimaryLoaderPage";
+import { Link } from "react-router";
 {motion}
 
 const ReportPost = () => {
@@ -91,7 +92,7 @@ const ReportPost = () => {
 
   return (
     <motion.div
-      className="p-4 min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100"
+      className=" w-[90vw] md:w-[65vw] lg:w-full mx-auto  min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -148,7 +149,7 @@ const ReportPost = () => {
                         />
                         <div>
                           <p className="font-medium text-gray-800">
-                            {report.productName}
+                            <Link to={`/product/details/${report._id}`} className="hover:link">{report.productName}</Link>
                           </p>
                           <p className="text-xs text-gray-500">
                             {report.tags?.slice(0, 2).join(", ")}
