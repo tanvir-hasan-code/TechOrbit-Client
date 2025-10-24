@@ -132,6 +132,8 @@ const ProductDetails = () => {
         rating,
         message,
         userEmail: user.email,
+        userName: user?.displayName,
+        userPhoto: user?.photoURL,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries(["productDetails", id]);

@@ -32,8 +32,9 @@ const RatingSlider = ({ ratings }) => {
         >
           {ratings.map((item) => (
             <SwiperSlide key={item._id}>
-              <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition">
-                <div className="flex items-center gap-2 mb-3">
+              <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition relative">
+                {/* ⭐ Rating Stars */}
+                <div className="flex items-center gap-1 mb-3">
                   {[...Array(item.rating)].map((_, i) => (
                     <FaStar key={i} className="text-yellow-400" />
                   ))}
@@ -42,13 +43,25 @@ const RatingSlider = ({ ratings }) => {
                   ))}
                 </div>
 
-                <p className="text-gray-700 italic mb-3">
-                  “{item.message}”
-                </p>
+                {/* 💬 Review Text */}
+                <p className="text-gray-700 italic overflow-auto mb-4">“{item.message}”</p>
 
-                <p className="text-sm text-gray-500">
-                  — {item.userEmail}
-                </p>
+                {/* 👤 Reviewer Info */}
+                <div className="flex items-center gap-3 mt-auto border-t pt-3">
+                  <img
+                    src={
+                      item?.userPhoto || "https://i.ibb.co/4pDNDk1/avatar.png"
+                    }
+                    alt={item?.userName || "User"}
+                    className="w-10 h-10 rounded-full object-cover border-2 border-yellow-400"
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-sm font-semibold text-gray-800">
+                      {item?.userName || "Anonymous"}
+                    </p>
+                    <p className="text-xs text-gray-500">{item.userEmail}</p>
+                  </div>
+                </div>
               </div>
             </SwiperSlide>
           ))}

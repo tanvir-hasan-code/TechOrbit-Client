@@ -18,10 +18,11 @@ const TrendingProducts = () => {
   const { data: products = [], refetch, isLoading } = useQuery({
     queryKey: ["trending-products"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/featured-products");
+      const res = await axiosInstance.get("/trending-products");
       return res.data.data;
     },
   });
+
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
 
@@ -52,9 +53,6 @@ const TrendingProducts = () => {
     }
   };
 
-  const sortedProducts = [...products]
-    .filter((p) => p.isFeatured)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <div className="my-10 max-w-6xl mx-auto px-4">
@@ -62,11 +60,11 @@ const TrendingProducts = () => {
         🔥 Trending Products
       </h2>
 
-      {sortedProducts.length === 0 ? (
+      {products?.length === 0 ? (
         <p className="text-center text-gray-500">No trending products yet.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sortedProducts.map((product, i) => (
+          {products?.map((product, i) => (
             <motion.div
               key={product._id}
               initial={{ opacity: 0, y: 20 }}
