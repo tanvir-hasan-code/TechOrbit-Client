@@ -57,43 +57,6 @@ Users can post, comment, upvote/downvote, report products, and moderators or adm
 
 ---
 
-## ⚙️ Dependencies
-
-### 🖥️ Client Side
-```json
-"dependencies": {
-  "@pathofdev/react-tag-input": "^1.0.7",
-  "@stripe/react-stripe-js": "^5.2.0",
-  "@stripe/stripe-js": "^8.1.0",
-  "@tanstack/react-query": "^5.90.5",
-  "aos": "^2.3.4",
-  "axios": "^1.12.2",
-  "daisyui": "^5.2.2",
-  "firebase": "^12.4.0",
-  "framer-motion": "^12.23.24",
-  "lottie-react": "^2.4.1",
-  "lucide-react": "^0.545.0",
-  "react": "^19.1.1",
-  "react-dom": "^19.1.1",
-  "react-hook-form": "^7.65.0",
-  "react-hot-toast": "^2.6.0",
-  "react-icons": "^5.5.0",
-  "react-intersection-observer": "^9.16.0",
-  "react-router": "^7.9.4",
-  "recharts": "^3.3.0",
-  "sweetalert2": "^11.26.2",
-  "swiper": "^12.0.2",
-  "tailwindcss": "^4.1.14"
-}
-
-"dependencies": {
-  "cors": "^2.8.5",
-  "dotenv": "^17.2.3",
-  "express": "^5.1.0",
-  "firebase-admin": "^13.5.0",
-  "mongodb": "^6.20.0",
-  "stripe": "^19.1.0"
-}
 
 ## 🔐 Security & Environment
 
@@ -234,5 +197,45 @@ Your project takes security seriously. Here’s how sensitive information is han
   &nbsp; • &nbsp;
   <a href="https://tech-orbit-server-sepia.vercel.app/" target="_blank" rel="noopener">🔗 Server API</a>
 </div>
+
+## ⚙️ Dependencies
+
+### 🖥️ Client Side
+```json
+"dependencies": {
+  "@pathofdev/react-tag-input": "^1.0.7",
+  "@stripe/react-stripe-js": "^5.2.0",
+  "@stripe/stripe-js": "^8.1.0",
+  "@tanstack/react-query": "^5.90.5",
+  "aos": "^2.3.4",
+  "axios": "^1.12.2",
+  "daisyui": "^5.2.2",
+  "firebase": "^12.4.0",
+  "framer-motion": "^12.23.24",
+  "lottie-react": "^2.4.1",
+  "lucide-react": "^0.545.0",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+  "react-hook-form": "^7.65.0",
+  "react-hot-toast": "^2.6.0",
+  "react-icons": "^5.5.0",
+  "react-intersection-observer": "^9.16.0",
+  "react-router": "^7.9.4",
+  "recharts": "^3.3.0",
+  "sweetalert2": "^11.26.2",
+  "swiper": "^12.0.2",
+  "tailwindcss": "^4.1.14"
+}
+
+"dependencies": {
+  "cors": "^2.8.5",
+  "dotenv": "^17.2.3",
+  "express": "^5.1.0",
+  "firebase-admin": "^13.5.0",
+  "mongodb": "^6.20.0",
+  "stripe": "^19.1.0"
+}
+
+
 
 
