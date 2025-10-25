@@ -40,15 +40,20 @@ Users can post, comment, upvote/downvote, report products, and moderators or adm
 
 ---
 
-## 🧰 Tech Stack
+## 🧩 Tech Stack
 
-| Category | Technologies |
-|-----------|---------------|
-| **Frontend** | React.js, Tailwind CSS, DaisyUI, Framer Motion, Axios, React Query, AOS, Lottie, Recharts, SweetAlert2, Swiper |
-| **Backend** | Node.js, Express.js, MongoDB, Firebase Admin SDK |
-| **Authentication** | Firebase Auth (Email/Password + Google Login), JWT |
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | React 19, Vite, Tailwind CSS, DaisyUI, Framer Motion, Recharts, Axios, React Query |
+| **Backend** | Node.js, Express 5, MongoDB |
+| **Authentication** | Firebase Auth, Firebase Admin SDK, JWT |
 | **Payment** | Stripe Integration |
-| **Tools** | Git, GitHub, Firebase Hosting, Vercel, Postman |
+| **Deployment** | Firebase Hosting (client) & Vercel (server) |
+| **State Management** | React Query + Context |
+| **Animation** | Framer Motion, AOS |
+| **Charting** | Recharts |
+| **Form Handling** | React Hook Form |
+| **Notification** | SweetAlert2, React Hot Toast |
 
 ---
 
@@ -80,3 +85,126 @@ Users can post, comment, upvote/downvote, report products, and moderators or adm
   "swiper": "^12.0.2",
   "tailwindcss": "^4.1.14"
 }
+
+"dependencies": {
+  "cors": "^2.8.5",
+  "dotenv": "^17.2.3",
+  "express": "^5.1.0",
+  "firebase-admin": "^13.5.0",
+  "mongodb": "^6.20.0",
+  "stripe": "^19.1.0"
+}
+
+🔐 Security & Environment
+
+✅ Firebase configuration keys secured in .env
+✅ MongoDB credentials secured in .env
+✅ Stripe secret key secured in .env
+✅ Firebase Admin credentials safely handled
+✅ JWT token-based route protection
+✅ Role-based API access (Admin / Moderator / User)
+
+👥 User Roles & Features
+🧑 Normal User
+
+🔸 Register/Login with Firebase (Email & Google)
+
+🔸 Create/Update Profile
+
+🔸 Post new products (AI tools, Apps, Games, etc.)
+
+🔸 Upvote / Downvote / Comment / Report products
+
+🔸 View trending & featured products
+
+🔸 Subscribe via Stripe for Premium Membership
+
+🔸 Premium users can post unlimited products
+
+🧑‍⚖️ Moderator
+
+✅ Review pending product submissions
+
+✅ Approve / Reject / Feature products
+
+✅ Handle reported content
+
+✅ Manage moderation dashboard
+
+🧑‍💼 Admin
+
+🧭 View platform analytics (Pie Charts & Cards)
+
+🧑‍🤝‍🧑 Manage all users & roles
+
+🎟️ Add/Edit/Delete coupons
+
+💬 Monitor site-wide activity
+
+
+### 💳 Payment System
+- Integrated **Stripe Checkout**
+- Secure API keys using `.env`
+- Users can upgrade to Premium instantly
+
+🧩 Coupon Management
+
+Admin adds valid coupon codes with expiry, description, and amount.
+
+Dynamic coupon slider on the homepage.
+
+Coupons integrated with payment flow for discount redemption.
+
+
+
+🧾 Dashboard Overview
+
+| Dashboard Type          | Features                                 |
+| ----------------------- | ---------------------------------------- |
+| **User Dashboard**      | Profile, Add Product, My Products        |
+| **Moderator Dashboard** | Pending Post, Reported Post  |
+| **Admin Dashboard**     | Statistics, Manage Users, Manage Coupons |
+
+
+📊 Commit Structure
+
+| Type      | Example                                  |
+| --------- | ---------------------------------------- |
+| ✨ Feature | `feat(auth): add google login system`    |
+| 🐛 Fix    | `fix(api): resolve jwt middleware error` |
+| 🎨 UI     | `style(home): improve banner layout`     |
+| 🔧 Config | `chore(env): secure stripe keys`         |
+
+
+
+### ⚙️ Backend Features
+- Role-based protected API routes
+- JWT authentication middleware
+- MongoDB-based dynamic filtering, pagination & search
+- CORS configured properly for production
+- Stripe & Firebase Admin integration for secure operations
+
+---
+
+| Component      | Platform         |
+| -------------- | ---------------- |
+| Frontend       | Firebase Hosting |
+| Backend        | Vercel           |
+| Database       | MongoDB Atlas    |
+| Authentication | Firebase         |
+| Payment        | Stripe           |
+
+
+📸 Project Preview
+<p align="center"> <img src="https://i.ibb.co/wQbn5V7/dashboard-preview.png" alt="Dashboard Preview" width="85%" /> </p>
+
+
+👨‍💻 Author
+
+Tanvir Hasan
+📧 tanvirx015@gmail.com
+
+💼 GitHub Profile
+
+💬 LinkedIn
+
