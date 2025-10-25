@@ -1,13 +1,15 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
-import { FaThumbsUp, FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router";
+import { FaThumbsUp, FaExternalLinkAlt, FaInfoCircle, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-{motion}
+{
+  motion;
+}
 
 const TrendingProducts = () => {
   const axiosInstance = useAxios();
@@ -15,14 +17,17 @@ const TrendingProducts = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const { data: products = [], refetch, isLoading } = useQuery({
+  const {
+    data: products = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["trending-products"],
     queryFn: async () => {
       const res = await axiosInstance.get("/trending-products");
       return res.data.data;
     },
   });
-
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
 
@@ -52,7 +57,6 @@ const TrendingProducts = () => {
       toast.error("Something went wrong!");
     }
   };
-
 
   return (
     <div className="my-10 max-w-6xl mx-auto px-4">
@@ -169,13 +173,47 @@ const TrendingProducts = () => {
                     alt={product.ownerName}
                     className="w-6 h-6 rounded-full object-cover border-2 border-white"
                   />
-                  <span className="text-gray-200 text-xs">{product.ownerName}</span>
+                  <span className="text-gray-200 text-xs">
+                    {product.ownerName}
+                  </span>
                 </div>
               </motion.div>
             </motion.div>
           ))}
         </div>
       )}
+      <motion.div
+        className="flex justify-center my-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <Link to="/products">
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0 0 25px rgba(168, 85, 247, 0.8)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="relative flex items-center gap-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg overflow-hidden transition-all duration-500"
+          >
+            <span className="relative z-10">Show All Products</span>
+            <FaArrowRight className="relative z-10" />
+            {/* Gradient animation overlay */}
+            <motion.span
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 2,
+                ease: "linear",
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            />
+          </motion.button>
+        </Link>
+      </motion.div>
     </div>
   );
 };
