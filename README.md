@@ -160,6 +160,15 @@ Your project takes security seriously. Here’s how sensitive information is han
 
 <p align="center">
   <img src="https://i.ibb.co.com/0w2TGmZ/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/MD6zFBHm/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/rCc34WD/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/Qjj3Wc6D/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/RktdXDm1/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/h1nPmQ7y/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/VYFXCRcg/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/7tMn0zPr/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/sdqB9TSN/image.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/5XwF9J0K/image.png" alt="Dashboard Preview" width="85%" />
 </p>
 
 ---
@@ -236,6 +245,8 @@ Your project takes security seriously. Here’s how sensitive information is han
   "mongodb": "^6.20.0",
   "stripe": "^19.1.0"
 }
+```
+-**Made By Tanvir**
 
 
 

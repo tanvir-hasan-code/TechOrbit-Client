@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
+import { Link } from "react-router";
 {motion}
 
 const JoinAsMaker = () => {
@@ -20,9 +21,9 @@ const JoinAsMaker = () => {
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
             Are you building something amazing? Share your innovation with the world and get featured on TechOrbit.
           </p>
-          <button className="btn btn-primary rounded-full px-8 hover:scale-105 transition-transform duration-300">
+          <Link to={"/add-product"} className="btn btn-primary rounded-full px-8 hover:scale-105 transition-transform duration-300">
             Submit Your Product
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>
