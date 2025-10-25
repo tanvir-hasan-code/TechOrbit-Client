@@ -227,6 +227,7 @@ Your project takes security seriously. Here’s how sensitive information is han
   "tailwindcss": "^4.1.14"
 }
 
+
 "dependencies": {
   "cors": "^2.8.5",
   "dotenv": "^17.2.3",
