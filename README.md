@@ -3,7 +3,7 @@
 <!-- ───────────────────────────────────────────── -->
 
 <p align="center">
-  <img src="https://i.ibb.co/g4yRj3T/techorbit-banner.png" alt="TechOrbit Banner" width="100%" />
+  <img src="https://i.ibb.co.com/Y4XnpX1r/image.png" alt="TechOrbit Banner" width="100%" />
 </p>
 
 <h1 align="center">🚀 TechOrbit</h1>
@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://techorbit-0.web.app/"><img src="https://img.shields.io/badge/Live_Site-Firebase-blue?style=for-the-badge&logo=firebase" /></a>
+  <a href="https://techorbit-0.web.app/" target="blank"><img src="https://img.shields.io/badge/Live_Site-Firebase-blue?style=for-the-badge&logo=firebase" /></a>
   <a href="https://tech-orbit-server-sepia.vercel.app/"><img src="https://img.shields.io/badge/Server-Vercel-black?style=for-the-badge&logo=vercel" /></a>
   <a href="https://github.com/tanvirx015"><img src="https://img.shields.io/badge/Author-Tanvir_Hasan-green?style=for-the-badge&logo=github" /></a>
 </p>
