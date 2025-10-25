@@ -159,7 +159,7 @@ Your project takes security seriously. Here’s how sensitive information is han
 ## 📸 Project Preview
 
 <p align="center">
-  <img src="https://i.ibb.co/wQbn5V7/dashboard-preview.png" alt="Dashboard Preview" width="85%" />
+  <img src="https://i.ibb.co.com/0w2TGmZ/image.png" alt="Dashboard Preview" width="85%" />
 </p>
 
 ---
