@@ -106,109 +106,134 @@ Your project takes security seriously. Here’s how sensitive information is han
 - ✅ **JWT token-based route protection**
 - ✅ **Role-based API access** (Admin / Moderator / User)
 
+---
 
 ## 👥 User Roles & Features
- 
- ##🧑 Normal User
 
--🔸** Register/Login with Firebase (Email & Google)
+### 🧑 Normal User
+- 🔸 **Register/Login with Firebase** (Email & Google)
+- 🔸 **Create/Update Profile**
+- 🔸 **Post new products** (AI tools, Apps, Games, etc.)
+- 🔸 **Upvote / Downvote / Comment / Report products**
+- 🔸 **View trending & featured products**
+- 🔸 **Subscribe via Stripe for Premium Membership**
+- 🔸 **Premium users can post unlimited products**
 
--🔸** Create/Update Profile
+---
 
--🔸** Post new products (AI tools, Apps, Games, etc.)
+### 🧑‍⚖️ Moderator
+- ✅ **Review pending product submissions**
+- ✅ **Approve / Reject / Feature products**
+- ✅ **Handle reported content**
+- ✅ **Manage moderation dashboard**
 
--🔸** Upvote / Downvote / Comment / Report products
+---
 
--🔸** View trending & featured products
+### 🧑‍💼 Admin
+- 🧭 **View platform analytics** (Pie Charts & Cards)
+- 🧑‍🤝‍🧑 **Manage all users & roles**
+- 🎟️ **Add/Edit/Delete coupons**
+- 💬 **Monitor site-wide activity**
 
--🔸** Subscribe via Stripe for Premium Membership
+---
 
--🔸** Premium users can post unlimited products
-
-## 🧑‍⚖️ Moderator
-
-- ✅ ** Review pending product submissions
-
-✅ Approve / Reject / Feature products
-
-✅ Handle reported content
-
-✅ Manage moderation dashboard
-
-🧑‍💼 Admin
-
-🧭 View platform analytics (Pie Charts & Cards)
-
-🧑‍🤝‍🧑 Manage all users & roles
-
-🎟️ Add/Edit/Delete coupons
-
-💬 Monitor site-wide activity
-
-
-### 💳 Payment System
+## 💳 Payment System
 - Integrated **Stripe Checkout**
 - Secure API keys using `.env`
-- Users can upgrade to Premium instantly
+- Users can upgrade to **Premium instantly**
 
-🧩 Coupon Management
+---
 
-Admin adds valid coupon codes with expiry, description, and amount.
+## 🧩 Coupon Management
+- Admin adds valid coupon codes with expiry, description, and amount  
+- Dynamic coupon slider on the homepage  
+- Coupons integrated with payment flow for discount redemption  
 
-Dynamic coupon slider on the homepage.
+---
 
-Coupons integrated with payment flow for discount redemption.
-
-
-
-🧾 Dashboard Overview
+## 🧾 Dashboard Overview
 
 | Dashboard Type          | Features                                 |
 | ----------------------- | ---------------------------------------- |
 | **User Dashboard**      | Profile, Add Product, My Products        |
-| **Moderator Dashboard** | Pending Post, Reported Post  |
+| **Moderator Dashboard** | Pending Post, Reported Post              |
 | **Admin Dashboard**     | Statistics, Manage Users, Manage Coupons |
-
-
-📊 Commit Structure
-
-| Type      | Example                                  |
-| --------- | ---------------------------------------- |
-| ✨ Feature | `feat(auth): add google login system`    |
-| 🐛 Fix    | `fix(api): resolve jwt middleware error` |
-| 🎨 UI     | `style(home): improve banner layout`     |
-| 🔧 Config | `chore(env): secure stripe keys`         |
-
-
-
-### ⚙️ Backend Features
-- Role-based protected API routes
-- JWT authentication middleware
-- MongoDB-based dynamic filtering, pagination & search
-- CORS configured properly for production
-- Stripe & Firebase Admin integration for secure operations
 
 ---
 
+## 📊 Commit Structure
+
+| Type      | Example                                   |
+| ---------- | ----------------------------------------- |
+| ✨ Feature | `feat(auth): add google login system`     |
+| 🐛 Fix     | `fix(api): resolve jwt middleware error`  |
+| 🎨 UI      | `style(home): improve banner layout`      |
+| 🔧 Config  | `chore(env): secure stripe keys`          |
+
+---
+
+## ⚙️ Backend Features
+- Role-based protected API routes  
+- JWT authentication middleware  
+- MongoDB-based dynamic filtering, pagination & search  
+- CORS configured properly for production  
+- Stripe & Firebase Admin integration for secure operations  
+
+---
+
+## 🧩 Deployment Overview
+
 | Component      | Platform         |
 | -------------- | ---------------- |
-| Frontend       | Firebase Hosting |
-| Backend        | Vercel           |
-| Database       | MongoDB Atlas    |
-| Authentication | Firebase         |
-| Payment        | Stripe           |
+| **Frontend**   | Firebase Hosting |
+| **Backend**    | Vercel           |
+| **Database**   | MongoDB Atlas    |
+| **Auth**       | Firebase         |
+| **Payment**    | Stripe           |
+
+---
+
+## 📸 Project Preview
+
+<p align="center">
+  <img src="https://i.ibb.co/wQbn5V7/dashboard-preview.png" alt="Dashboard Preview" width="85%" />
+</p>
+
+---
+
+## 👨‍💻 Author
+
+**Tanvir Hasan**  
+📧 Email: [tanvirx015@gmail.com](mailto:tanvirx015@gmail.com)  
+
+💼 **GitHub:** [tanvir-hasan-code](https://github.com/tanvir-hasan-code)  
+💬 **LinkedIn:** [linkedin.com/in/tanvir-hasan-code](https://www.linkedin.com/in/tanvir-hasan-b71828381/)
+
+---
+
+⭐ *If you like this project, please consider giving it a star on GitHub — it helps others discover it too!*
 
 
-📸 Project Preview
-<p align="center"> <img src="https://i.ibb.co/wQbn5V7/dashboard-preview.png" alt="Dashboard Preview" width="85%" /> </p>
+## 👨‍💻 Author
 
+<p align="center">
+  <a href="https://github.com/tanvir-hasan-code" target="_blank" rel="noopener">
+    <img src="https://i.ibb.co.com/TMRn5yvy/image.png" width="110" alt="Tanvir Hasan" style="border-radius:12px; border:1px solid #eaeaea"/>
+  </a>
+  <br />
+  <strong style="font-size:18px">Tanvir Hasan</strong>
+  <p style="margin:6px 0 12px 0">Full-stack MERN developer • Creator of <em>TechOrbit</em></p>
 
-👨‍💻 Author
+  <a href="mailto:tanvirx015@gmail.com" target="_blank" rel="noopener">📧 tanvirx015@gmail.com</a>
+  &nbsp; • &nbsp;
+  <a href="https://github.com/tanvir-hasan-code" target="_blank" rel="noopener">💼 GitHub</a>
+  &nbsp; • &nbsp;
+  <a href="https://www.linkedin.com/in/tanvir-hasan-b71828381" target="_blank" rel="noopener">💬 LinkedIn</a>
+  <br /><br />
 
-Tanvir Hasan
-📧 tanvirx015@gmail.com
+  <a href="https://techorbit-0.web.app/" target="_blank" rel="noopener">🌐 Live Demo</a>
+  &nbsp; • &nbsp;
+  <a href="https://tech-orbit-server-sepia.vercel.app/" target="_blank" rel="noopener">🔗 Server API</a>
+</p>
 
-💼 GitHub Profile
-
-💬 LinkedIn
 
