@@ -111,7 +111,7 @@ const Coupons = () => {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-100 p-6">
+    <section className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-100 rounded-4xl p-6">
       <div className="max-w-6xl mx-auto">
         {role === "admin" && (
           <div className="mb-10">

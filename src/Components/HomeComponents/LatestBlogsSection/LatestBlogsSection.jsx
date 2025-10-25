@@ -32,7 +32,7 @@ const blogs = [
 
 const LatestBlogsSection = () => {
   return (
-    <section className="py-16 w-full bg-base-100" id="blogs">
+    <section className="py-16  w-full bg-base-100" id="blogs">
       <div className="max-w-6xl mx-auto px-5 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           📰 Latest Tech News & Blogs

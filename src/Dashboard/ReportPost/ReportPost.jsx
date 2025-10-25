@@ -94,7 +94,7 @@ const ReportPost = () => {
 
   return (
     <motion.div
-      className=" w-[90vw] md:w-[65vw] lg:w-full mx-auto  min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100"
+      className=" w-[90vw] md:w-[65vw] lg:w-full mx-auto rounded-4xl  min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}

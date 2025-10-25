@@ -110,7 +110,7 @@ const MyProducts = () => {
 
   return (
     <motion.div
-      className="p-6 min-h-screen w-[90vw] md:w-[65vw] lg:w-full mx-auto bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100"
+      className="p-6 min-h-screen w-[90vw] rounded-4xl md:w-[65vw] lg:w-full mx-auto bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}

@@ -101,7 +101,7 @@ const handleDeleteAccount = async () => {
 
   return (
     <motion.div
-      className="p-6 min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100"
+      className="p-6 min-h-screen rounded-4xl bg-gradient-to-br from-indigo-50 via-white to-blue-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}

@@ -78,7 +78,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 md:p-10 min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100">
+    <div className="p-4 sm:p-6 md:p-10 rounded-4xl min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100">
       <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-6 sm:p-10 border border-indigo-100 relative overflow-hidden">
         {/* Header */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-indigo-600 mb-8 flex justify-center items-center gap-3">

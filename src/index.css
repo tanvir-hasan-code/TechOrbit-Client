@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: all;
+}
 
-/* Active NavLink styling */
+/* Active NavLink style */
 .active {
   color: #2563eb !important;
   font-weight: 600;

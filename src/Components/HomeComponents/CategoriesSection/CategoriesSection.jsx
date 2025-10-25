@@ -12,7 +12,7 @@ const categories = [
 
 const CategoriesSection = () => {
   return (
-    <section className="py-16 bg-base-200" id="categories">
+    <section className="py-16 rounded-4xl bg-base-200" id="categories">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">🌐 Explore by Category</h2>
         <p className="text-gray-500 mb-12">

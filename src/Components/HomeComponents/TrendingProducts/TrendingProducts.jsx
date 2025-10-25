@@ -197,7 +197,7 @@ const TrendingProducts = () => {
             whileTap={{ scale: 0.95 }}
             className="relative flex items-center gap-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg overflow-hidden transition-all duration-500"
           >
-            <span className="relative z-10">Show All Products</span>
+            <span className="relative z-10">See All Products</span>
             <FaArrowRight className="relative z-10" />
             {/* Gradient animation overlay */}
             <motion.span
