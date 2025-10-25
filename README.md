@@ -15,7 +15,7 @@
 <p align="center">
   <a href="https://techorbit-0.web.app/" target="blank"><img src="https://img.shields.io/badge/Live_Site-Firebase-blue?style=for-the-badge&logo=firebase" /></a>
   <a href="https://tech-orbit-server-sepia.vercel.app/"><img src="https://img.shields.io/badge/Server-Vercel-black?style=for-the-badge&logo=vercel" /></a>
-  <a href="https://github.com/tanvirx015"><img src="https://img.shields.io/badge/Author-Tanvir_Hasan-green?style=for-the-badge&logo=github" /></a>
+  <a href="https://github.com/tanvir-hasan-code"><img src="https://img.shields.io/badge/Author-Tanvir_Hasan-green?style=for-the-badge&logo=github" /></a>
 </p>
 
 ---
@@ -95,35 +95,39 @@ Users can post, comment, upvote/downvote, report products, and moderators or adm
   "stripe": "^19.1.0"
 }
 
-🔐 Security & Environment
+## 🔐 Security & Environment
 
-✅ Firebase configuration keys secured in .env
-✅ MongoDB credentials secured in .env
-✅ Stripe secret key secured in .env
-✅ Firebase Admin credentials safely handled
-✅ JWT token-based route protection
-✅ Role-based API access (Admin / Moderator / User)
+Your project takes security seriously. Here’s how sensitive information is handled:
 
-👥 User Roles & Features
-🧑 Normal User
+- ✅ **Firebase configuration keys** secured in `.env`
+- ✅ **MongoDB credentials** secured in `.env`
+- ✅ **Stripe secret key** secured in `.env`
+- ✅ **Firebase Admin credentials** safely handled
+- ✅ **JWT token-based route protection**
+- ✅ **Role-based API access** (Admin / Moderator / User)
 
-🔸 Register/Login with Firebase (Email & Google)
 
-🔸 Create/Update Profile
+## 👥 User Roles & Features
+ 
+ ##🧑 Normal User
 
-🔸 Post new products (AI tools, Apps, Games, etc.)
+-🔸** Register/Login with Firebase (Email & Google)
 
-🔸 Upvote / Downvote / Comment / Report products
+-🔸** Create/Update Profile
 
-🔸 View trending & featured products
+-🔸** Post new products (AI tools, Apps, Games, etc.)
 
-🔸 Subscribe via Stripe for Premium Membership
+-🔸** Upvote / Downvote / Comment / Report products
 
-🔸 Premium users can post unlimited products
+-🔸** View trending & featured products
 
-🧑‍⚖️ Moderator
+-🔸** Subscribe via Stripe for Premium Membership
 
-✅ Review pending product submissions
+-🔸** Premium users can post unlimited products
+
+## 🧑‍⚖️ Moderator
+
+- ✅ ** Review pending product submissions
 
 ✅ Approve / Reject / Feature products
 
