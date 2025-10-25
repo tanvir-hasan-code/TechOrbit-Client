@@ -213,27 +213,26 @@ Your project takes security seriously. Here’s how sensitive information is han
 
 ⭐ *If you like this project, please consider giving it a star on GitHub — it helps others discover it too!*
 
-
 ## 👨‍💻 Author
 
-<p align="center">
+<div align="center">
   <a href="https://github.com/tanvir-hasan-code" target="_blank" rel="noopener">
-    <img src="https://i.ibb.co.com/TMRn5yvy/image.png" width="110" alt="Tanvir Hasan" style="border-radius:12px; border:1px solid #eaeaea"/>
-  </a>
-  <br />
-  <strong style="font-size:18px">Tanvir Hasan</strong>
-  <p style="margin:6px 0 12px 0">Full-stack MERN developer • Creator of <em>TechOrbit</em></p>
+    <img src="https://i.ibb.co.com/TMRn5yvy/image.png" width="110" alt="Tanvir Hasan" style="border-radius:12px; border:1px solid #eaeaea"/>
+  </a>
+  <br />
+  <strong style="font-size:18px">Tanvir Hasan</strong>
+  <p style="margin:6px 0 12px 0">Full-stack MERN developer • Creator of <em>TechOrbit</em></p>
 
-  <a href="mailto:tanvirx015@gmail.com" target="_blank" rel="noopener">📧 tanvirx015@gmail.com</a>
-  &nbsp; • &nbsp;
-  <a href="https://github.com/tanvir-hasan-code" target="_blank" rel="noopener">💼 GitHub</a>
-  &nbsp; • &nbsp;
-  <a href="https://www.linkedin.com/in/tanvir-hasan-b71828381" target="_blank" rel="noopener">💬 LinkedIn</a>
-  <br /><br />
+  <a href="mailto:tanvirx015@gmail.com" target="_blank" rel="noopener">📧 tanvirx015@gmail.com</a>
+  &nbsp; • &nbsp;
+  <a href="https://github.com/tanvir-hasan-code" target="_blank" rel="noopener">💼 GitHub</a>
+  &nbsp; • &nbsp;
+  <a href="https://www.linkedin.com/in/tanvir-hasan-b71828381" target="_blank" rel="noopener">💬 LinkedIn</a>
+  <br /><br />
 
-  <a href="https://techorbit-0.web.app/" target="_blank" rel="noopener">🌐 Live Demo</a>
-  &nbsp; • &nbsp;
-  <a href="https://tech-orbit-server-sepia.vercel.app/" target="_blank" rel="noopener">🔗 Server API</a>
-</p>
+  <a href="https://techorbit-0.web.app/" target="_blank" rel="noopener">🌐 Live Demo</a>
+  &nbsp; • &nbsp;
+  <a href="https://tech-orbit-server-sepia.vercel.app/" target="_blank" rel="noopener">🔗 Server API</a>
+</div>
 
 
