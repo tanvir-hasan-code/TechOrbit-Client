@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import Lottie from "lottie-react";
 import registerAnimation from "../../../../assets/Lottie/User-Register.json";
 import GoogleLogin from "../SocialLogin/GoogleLogin";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link,  useNavigate } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
@@ -13,11 +13,17 @@ import useTitle from "../../../../Hooks/useTitle";
 
 const Register = () => {
   useTitle("Register")
-  const { createUser, updateUserProfile, setLoading } = useAuth();
+  const {user, createUser, updateUserProfile, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const location = useLocation();
-  const from = location?.state?.from || "/";
+  // const location = useLocation();
+  const from =  "/";
   const navigate = useNavigate();
+
+    useEffect(() => {
+      if (user) {
+      navigate(from)
+    }
+  },[user])
 
   const {
     register,
@@ -55,8 +61,9 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        // navigate(from);
         setLoading(false);
-        navigate(from);
+        window.location.reload()
       } else {
         Swal.fire({
           position: "center",

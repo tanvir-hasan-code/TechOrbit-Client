@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const GoogleLogin = () => {
-  const { GoogleSignIn } = useAuth();
+  const {user, GoogleSignIn } = useAuth();
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from);
+    }
+  },[user])
 
   const handleGoogleSignIn = () => {
     GoogleSignIn()
@@ -36,7 +42,7 @@ const GoogleLogin = () => {
             timer: 1500,
           });
         }
-        navigate(from);
+        window.location.reload()
       })
       .catch((err) => {
         if (err) {
